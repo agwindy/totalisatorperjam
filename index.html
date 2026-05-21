@@ -1,511 +1,525 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Aplikasi Totalisator SPBU 3417603</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Totalisator SPBU 3417603</title>
 
 <style>
+
+/* ================= GLOBAL ================= */
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
 
+html,body{
+  overflow-x:hidden;
+}
+
 body{
   font-family:Segoe UI,sans-serif;
   background:#edf4ff;
-  padding:20px;
-  color:#1e293b;
+  padding:10px;
 }
 
-.container{
-  max-width:1200px;
-  margin:auto;
-}
+/* ================= HEADER ================= */
 
 .header{
   background:linear-gradient(135deg,#0f172a,#2563eb);
   color:white;
-  padding:25px;
-  border-radius:18px;
-  margin-bottom:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+  padding:14px;
+  border-radius:12px;
+  margin-bottom:12px;
 }
 
 .header h1{
-  font-size:32px;
+  font-size:18px;
 }
 
-.card{
-  background:white;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.08);
-}
-
-.card h2{
-  margin-bottom:18px;
-  color:#2563eb;
-}
+/* ================= WRAPPER ================= */
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
-}
-
-.input-group{
-  display:flex;
-  flex-direction:column;
-}
-
-label{
-  font-size:14px;
-  margin-bottom:6px;
-  font-weight:600;
-}
-
-input{
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #cbd5e1;
-  font-size:16px;
-}
-
-input:focus{
-  outline:none;
-  border-color:#2563eb;
-  box-shadow:0 0 0 3px rgba(37,99,235,0.2);
-}
-
-.result-box{
-  margin-top:15px;
-  background:#f8fafc;
-  border:2px dashed #2563eb;
-  padding:15px;
-  border-radius:12px;
-}
-
-.result-box h3{
-  margin-bottom:10px;
-}
-
-.total{
-  font-size:28px;
-  font-weight:bold;
-  color:#16a34a;
-}
-
-.button-group{
-  display:flex;
-  flex-wrap:wrap;
+  grid-template-columns:1fr;
   gap:12px;
-  margin-top:20px;
 }
 
-button{
-  border:none;
-  padding:14px 20px;
+/* ================= CARD ================= */
+
+.card{
+  background:white;
   border-radius:12px;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:700;
-  transition:0.2s;
+  padding:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.08);
+  width:100%;
+  overflow:hidden;
 }
 
-.btn-lock{
-  background:#2563eb;
+/* ================= TITLE ================= */
+
+.title{
+  padding:8px;
   color:white;
+  border-radius:8px;
+  margin-bottom:10px;
+  font-weight:bold;
 }
 
-.btn-reset{
-  background:#dc2626;
-  color:white;
+.pertalite{
+  background:linear-gradient(135deg,#16a34a,#22c55e);
 }
 
-.btn-print{
-  background:#059669;
-  color:white;
+.pertamax{
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
 }
 
-button:hover{
-  transform:translateY(-2px);
-}
+/* ================= TABLE RESPONSIVE ================= */
 
 .table-wrap{
-  overflow:auto;
+  width:100%;
+  overflow:hidden;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  margin-top:15px;
+  table-layout:fixed;
 }
 
 th,td{
-  border:1px solid #cbd5e1;
-  padding:12px;
+  border:1px solid #ddd;
+  padding:4px;
+  font-size:10px;
   text-align:center;
+  word-wrap:break-word;
 }
 
-th{
-  background:#2563eb;
+/* ================= INPUT ================= */
+
+.input-box{
+  display:flex;
+  align-items:center;
+  gap:2px;
+  width:100%;
+}
+
+input{
+  width:100%;
+  min-width:0;
+  padding:3px;
+  font-size:10px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+/* ================= MINI BUTTON ================= */
+
+.mini-btn{
+  width:18px;
+  height:18px;
+  border:none;
+  font-size:8px;
   color:white;
+  border-radius:3px;
+  cursor:pointer;
+  flex-shrink:0;
 }
 
-.highlight{
-  background:#dcfce7;
+.copy{background:#2563eb;}
+.clear{background:#dc2626;}
+
+/* ================= TOTAL ================= */
+
+.total{
+  margin-top:6px;
+  font-size:14px;
   font-weight:bold;
+  color:#16a34a;
 }
 
-.footer{
-  text-align:center;
-  margin-top:20px;
-  color:#64748b;
+/* ================= STOK ================= */
+
+.stok-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-top:8px;
 }
 
-@media print{
-  button{
-    display:none;
-  }
+.stok-grid label{
+  font-size:9px;
+}
+
+.stok-grid input{
+  font-size:10px;
+  padding:3px;
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+  margin-top:8px;
+  width:100%;
+  border:none;
+  padding:8px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  color:white;
+  font-size:12px;
+}
+
+.lock-p{background:#16a34a;}
+.lock-m{background:#1d4ed8;}
+
+/* ================= SUPER RESPONSIVE ================= */
+
+@media(max-width:480px){
 
   body{
-    background:white;
-  }
-}
-
-@media (max-width:992px){
-
-  .header h1{
-    font-size:26px;
-  }
-
-  .card{
-    padding:16px;
-  }
-
-  table{
-    min-width:700px;
-  }
-
-  th,td{
-    padding:10px;
-    font-size:14px;
-  }
-
-  input{
-    font-size:15px;
-    padding:10px;
-  }
-
-  .total{
-    font-size:24px;
-  }
-}
-
-@media (max-width:768px){
-
-  body{
-    padding:12px;
-  }
-
-  .header{
-    padding:18px;
-    border-radius:14px;
+    padding:6px;
   }
 
   .header h1{
-    font-size:22px;
-    line-height:1.3;
-  }
-
-  .header p{
-    font-size:14px;
-    margin-top:6px;
-  }
-
-  .card{
-    border-radius:14px;
-    padding:14px;
-  }
-
-  .card h2{
-    font-size:18px;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .button-group{
-    flex-direction:column;
-  }
-
-  button{
-    width:100%;
-    padding:14px;
     font-size:15px;
   }
 
-  .result-box{
-    padding:12px;
-  }
-
-  .total{
-    font-size:22px;
-  }
-
-  table{
-    min-width:620px;
-  }
-}
-
-@media (max-width:480px){
-
-  .header h1{
-    font-size:18px;
-  }
-
-  .card h2{
-    font-size:16px;
-  }
-
   th,td{
-    font-size:12px;
-    padding:8px;
+    font-size:9px;
+    padding:3px;
   }
 
   input{
-    padding:8px;
+    font-size:9px;
+    padding:2px;
+  }
+
+  .mini-btn{
+    width:16px;
+    height:16px;
+    font-size:7px;
+  }
+
+  .total{
     font-size:13px;
   }
 
-  .total{
-    font-size:18px;
+  .stok-grid{
+    grid-template-columns:1fr; /* <- AUTO STACK */
   }
 
-  .footer{
-    font-size:12px;
-  }
-
-  table{
-    min-width:560px;
-  }
 }
 
-  body{
-    background:white;
-  }
+/* ================= FINAL SAFETY (NO SCROLL) ================= */
+
+table{
+  max-width:100%;
 }
+
 </style>
 </head>
+
 <body>
 
-<div class="container">
+<div class="header">
+  <h1>TOTALISATOR SPBU 3417603</h1>
+</div>
 
-  <div class="header">
-    <h1>APLIKASI TOTALISATOR SPBU 3417603</h1>
-    <p>Perhitungan otomatis penjualan nozzle & stok BBM</p>
+<div class="grid">
+
+<!-- ================= PERTALITE ================= -->
+
+<div class="card">
+
+  <div class="title pertalite">PERTALITE</div>
+
+  <div class="table-wrap">
+
+    <table>
+
+      <tr>
+        <th>Nozzle</th>
+        <th>Awal</th>
+        <th>Akhir</th>
+        <th>Hasil</th>
+      </tr>
+
+      <tr>
+        <td>A1</td>
+        <td>
+          <div class="input-box">
+            <input id="awalA1">
+            <button class="mini-btn copy" onclick="copy('awalA1')">C</button>
+            <button class="mini-btn clear" onclick="clearF('awalA1')">X</button>
+          </div>
+        </td>
+        <td>
+          <div class="input-box">
+            <input id="akhirA1">
+            <button class="mini-btn copy" onclick="copy('akhirA1')">C</button>
+            <button class="mini-btn clear" onclick="clearF('akhirA1')">X</button>
+          </div>
+        </td>
+        <td id="jualA1">0</td>
+      </tr>
+
+      <tr>
+        <td>A2</td>
+        <td>
+          <div class="input-box">
+            <input id="awalA2">
+            <button class="mini-btn copy" onclick="copy('awalA2')">C</button>
+            <button class="mini-btn clear" onclick="clearF('awalA2')">X</button>
+          </div>
+        </td>
+        <td>
+          <div class="input-box">
+            <input id="akhirA2">
+            <button class="mini-btn copy" onclick="copy('akhirA2')">C</button>
+            <button class="mini-btn clear" onclick="clearF('akhirA2')">X</button>
+          </div>
+        </td>
+        <td id="jualA2">0</td>
+      </tr>
+
+      <tr>
+        <td>C</td>
+        <td>
+          <div class="input-box">
+            <input id="awalC">
+            <button class="mini-btn copy" onclick="copy('awalC')">C</button>
+            <button class="mini-btn clear" onclick="clearF('awalC')">X</button>
+          </div>
+        </td>
+        <td>
+          <div class="input-box">
+            <input id="akhirC">
+            <button class="mini-btn copy" onclick="copy('akhirC')">C</button>
+            <button class="mini-btn clear" onclick="clearF('akhirC')">X</button>
+          </div>
+        </td>
+        <td id="jualC">0</td>
+      </tr>
+
+    </table>
+
   </div>
 
-  <div class="card">
-    <h2>Input Totalisator</h2>
+  <div class="total" id="totalPertalite">0</div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Nozzle</th>
-            <th>Totalisator Awal</th>
-            <th>Totalisator Akhir</th>
-            <th>Penjualan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>A1</td>
-            <td><input type="number" id="awalA1" /></td>
-            <td><input type="number" id="akhirA1" /></td>
-            <td class="highlight" id="jualA1">0</td>
-          </tr>
-
-          <tr>
-            <td>A2</td>
-            <td><input type="number" id="awalA2" /></td>
-            <td><input type="number" id="akhirA2" /></td>
-            <td class="highlight" id="jualA2">0</td>
-          </tr>
-
-          <tr>
-            <td>B1</td>
-            <td><input type="number" id="awalB1" /></td>
-            <td><input type="number" id="akhirB1" /></td>
-            <td class="highlight" id="jualB1">0</td>
-          </tr>
-
-          <tr>
-            <td>B2</td>
-            <td><input type="number" id="awalB2" /></td>
-            <td><input type="number" id="akhirB2" /></td>
-            <td class="highlight" id="jualB2">0</td>
-          </tr>
-
-          <tr>
-            <td>C</td>
-            <td><input type="number" id="awalC" /></td>
-            <td><input type="number" id="akhirC" /></td>
-            <td class="highlight" id="jualC">0</td>
-          </tr>
-
-          <tr>
-            <td>D</td>
-            <td><input type="number" id="awalD" /></td>
-            <td><input type="number" id="akhirD" /></td>
-            <td class="highlight" id="jualD">0</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="stok-grid">
+    <div>
+      <label>Stok Awal</label>
+      <input id="stokAwalPertalite">
     </div>
 
-    <div class="result-box">
-      <h3>Total Penjualan Seluruh Nozzle</h3>
-      <div class="total" id="grandTotal">0</div>
+    <div>
+      <label>Stok Akhir</label>
+      <input id="stokAkhirPertalite">
     </div>
-  </div>
 
-  <div class="card">
-    <h2>Perhitungan Stok Otomatis</h2>
-
-    <div class="grid">
-
-      <div class="input-group">
-        <label>Stok Awal</label>
-        <input type="number" id="stokAwal" />
-      </div>
-
-      <div class="input-group">
-        <label>Total Penjualan</label>
-        <input type="number" id="totalPenjualan" readonly />
-      </div>
-
-      <div class="input-group">
-        <label>Stok Akhir</label>
-        <input type="number" id="stokAkhir" />
-      </div>
-
-      <div class="input-group">
-        <label>Hasil Stok</label>
-        <input type="number" id="hasilStok" readonly />
-      </div>
-
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Kontrol Data</h2>
-
-    <div class="button-group">
-      <button class="btn-lock" id="btnLock" onclick="toggleKunci()">🔒 Kunci Data</button>
-      <button class="btn-reset" onclick="resetData()">🗑 Reset</button>
-      <button class="btn-print" onclick="window.print()">🖨 Cetak</button>
+    <div>
+      <label>Hasil Stok</label>
+      <input id="hasilPertalite" readonly>
     </div>
   </div>
 
-  <div class="footer">
-    SPBU 3417603 • Sistem Perhitungan Totalisator Otomatis
+  <button class="btn lock-p" onclick="lockPertalite()">🔒 Kunci Pertalite</button>
+
+</div>
+
+<!-- ================= PERTAMAX ================= -->
+
+<div class="card">
+
+  <div class="title pertamax">PERTAMAX</div>
+
+  <div class="table-wrap">
+
+    <table>
+
+      <tr>
+        <th>Nozzle</th>
+        <th>Awal</th>
+        <th>Akhir</th>
+        <th>Hasil</th>
+      </tr>
+
+      <tr>
+        <td>B1</td>
+        <td>
+          <div class="input-box">
+            <input id="awalB1">
+            <button class="mini-btn copy" onclick="copy('awalB1')">C</button>
+            <button class="mini-btn clear" onclick="clearF('awalB1')">X</button>
+          </div>
+        </td>
+        <td>
+          <div class="input-box">
+            <input id="akhirB1">
+            <button class="mini-btn copy" onclick="copy('akhirB1')">C</button>
+            <button class="mini-btn clear" onclick="clearF('akhirB1')">X</button>
+          </div>
+        </td>
+        <td id="jualB1">0</td>
+      </tr>
+
+      <tr>
+        <td>B2</td>
+        <td>
+          <div class="input-box">
+            <input id="awalB2">
+            <button class="mini-btn copy" onclick="copy('awalB2')">C</button>
+            <button class="mini-btn clear" onclick="clearF('awalB2')">X</button>
+          </div>
+        </td>
+        <td>
+          <div class="input-box">
+            <input id="akhirB2">
+            <button class="mini-btn copy" onclick="copy('akhirB2')">C</button>
+            <button class="mini-btn clear" onclick="clearF('akhirB2')">X</button>
+          </div>
+        </td>
+        <td id="jualB2">0</td>
+      </tr>
+
+      <tr>
+        <td>D</td>
+        <td>
+          <div class="input-box">
+            <input id="awalD">
+            <button class="mini-btn copy" onclick="copy('awalD')">C</button>
+            <button class="mini-btn clear" onclick="clearF('awalD')">X</button>
+          </div>
+        </td>
+        <td>
+          <div class="input-box">
+            <input id="akhirD">
+            <button class="mini-btn copy" onclick="copy('akhirD')">C</button>
+            <button class="mini-btn clear" onclick="clearF('akhirD')">X</button>
+          </div>
+        </td>
+        <td id="jualD">0</td>
+      </tr>
+
+    </table>
+
   </div>
+
+  <div class="total" id="totalPertamax">0</div>
+
+  <div class="stok-grid">
+    <div>
+      <label>Stok Awal</label>
+      <input id="stokAwalPertamax">
+    </div>
+
+    <div>
+      <label>Stok Akhir</label>
+      <input id="stokAkhirPertamax">
+    </div>
+
+    <div>
+      <label>Hasil Stok</label>
+      <input id="hasilPertamax" readonly>
+    </div>
+  </div>
+
+  <button class="btn lock-m" onclick="lockPertamax()">🔒 Kunci Pertamax</button>
+
+</div>
 
 </div>
 
 <script>
-const nozzle = ['A1','A2','B1','B2','C','D'];
+
+/* ================= HITUNG ================= */
+
+const pertalite = ['A1','A2','C'];
+const pertamax = ['B1','B2','D'];
 
 function hitung(){
 
-  let total = 0;
+  let p1=0,p2=0;
 
-  nozzle.forEach(n => {
-
-    const awal = parseFloat(document.getElementById('awal'+n).value) || 0;
-    const akhir = parseFloat(document.getElementById('akhir'+n).value) || 0;
-
-    const jual = akhir - awal;
-
-    document.getElementById('jual'+n).innerText = jual.toLocaleString('id-ID');
-
-    total += jual;
-
+  pertalite.forEach(n=>{
+    let a=+document.getElementById('awal'+n).value||0;
+    let b=+document.getElementById('akhir'+n).value||0;
+    let j=b-a;
+    document.getElementById('jual'+n).innerText=j;
+    p1+=j;
   });
 
-  document.getElementById('grandTotal').innerText = total.toLocaleString('id-ID');
-
-  document.getElementById('totalPenjualan').value = total;
-
-  hitungStok();
-}
-
-function hitungStok(){
-
-  const stokAwal = parseFloat(document.getElementById('stokAwal').value) || 0;
-  const totalPenjualan = parseFloat(document.getElementById('totalPenjualan').value) || 0;
-  const stokAkhir = parseFloat(document.getElementById('stokAkhir').value) || 0;
-
-  const hasil = stokAwal - totalPenjualan - stokAkhir;
-
-  document.getElementById('hasilStok').value = hasil;
-}
-
-let terkunci = false;
-
-function toggleKunci(){
-
-  terkunci = !terkunci;
-
-  nozzle.forEach(n => {
-
-    document.getElementById('awal'+n).readOnly = terkunci;
-
+  pertamax.forEach(n=>{
+    let a=+document.getElementById('awal'+n).value||0;
+    let b=+document.getElementById('akhir'+n).value||0;
+    let j=b-a;
+    document.getElementById('jual'+n).innerText=j;
+    p2+=j;
   });
 
-  document.getElementById('stokAwal').readOnly = terkunci;
+  document.getElementById('totalPertalite').innerText=p1;
+  document.getElementById('totalPertamax').innerText=p2;
 
-  const tombol = document.getElementById('btnLock');
+  document.getElementById('hasilPertalite').value =
+    (+document.getElementById('stokAwalPertalite').value||0) - p1 - (+document.getElementById('stokAkhirPertalite').value||0);
 
-  if(terkunci){
+  document.getElementById('hasilPertamax').value =
+    (+document.getElementById('stokAwalPertamax').value||0) - p2 - (+document.getElementById('stokAkhirPertamax').value||0);
 
-    tombol.innerHTML = '🔓 Buka Kunci';
-
-    alert('Totalisator awal dan stok awal berhasil dikunci');
-
-  }else{
-
-    tombol.innerHTML = '🔒 Kunci Data';
-
-    alert('Kunci berhasil dibuka');
-  }
 }
 
-function resetData(){
+/* ================= COPY ================= */
 
-  if(confirm('Yakin reset semua data?')){
-
-    localStorage.removeItem('spbuData');
-
-    location.reload();
-  }
+function copy(id){
+  navigator.clipboard.writeText(document.getElementById(id).value||'');
 }
 
-const semuaInput = document.querySelectorAll('input');
+/* ================= CLEAR ================= */
 
-semuaInput.forEach(input => {
-  input.addEventListener('input',hitung);
-});
-
-window.onload = function(){
+function clearF(id){
+  document.getElementById(id).value='';
   hitung();
 }
+
+/* ================= LOCK ================= */
+
+let lockP=false;
+let lockM=false;
+
+function lockPertalite(){
+
+  lockP=!lockP;
+
+  ['awalA1','awalA2','awalC','stokAwalPertalite'].forEach(id=>{
+    document.getElementById(id).readOnly=lockP;
+  });
+
+  alert(lockP?"Pertalite Terkunci":"Pertalite Dibuka");
+}
+
+function lockPertamax(){
+
+  lockM=!lockM;
+
+  ['awalB1','awalB2','awalD','stokAwalPertamax'].forEach(id=>{
+    document.getElementById(id).readOnly=lockM;
+  });
+
+  alert(lockM?"Pertamax Terkunci":"Pertamax Dibuka");
+}
+
+/* ================= AUTO ================= */
+
+document.querySelectorAll('input').forEach(i=>{
+  i.addEventListener('input',hitung);
+});
+
+hitung();
+
 </script>
 
 </body>
