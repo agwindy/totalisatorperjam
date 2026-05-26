@@ -36,7 +36,6 @@
     }
     .container { max-width: 1520px; margin: 0 auto; }
 
-    /* HERO */
     .hero {
       background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a5276 100%);
       border-radius: var(--radius);
@@ -72,7 +71,6 @@
       position: relative;
     }
 
-    /* TWIN GRID */
     .twin-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
@@ -80,7 +78,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* PRODUCT CARD */
     .product-card {
       background: var(--card);
       border-radius: var(--radius);
@@ -108,7 +105,6 @@
     .pertalite-hdr .nozzle-badge { background: #bbf7d0; color: #15803d; }
     .pertamax-hdr .nozzle-badge { background: #bfdbfe; color: #1d4ed8; }
 
-    /* TABLE */
     .table-wrap { padding: 1rem 1.2rem 0; overflow-x: auto; }
     .data-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
     .data-table th {
@@ -139,12 +135,10 @@
     input[type=number]:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
     input[readonly] { background: #f8fafd; color: #475569; }
 
-    /* STOK GRID */
     .stok-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; padding: 0.8rem 1.2rem; }
     .input-group { display: flex; flex-direction: column; gap: 0.3rem; }
     .input-group label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; }
 
-    /* ===== PENGUAPAN CARD — UTAMA ===== */
     .penguapan-card {
       margin: 0 1.2rem 1rem;
       border-radius: 1.2rem;
@@ -176,25 +170,21 @@
       letter-spacing: 0.05em;
     }
 
-    /* State: balance */
     .state-balance { border-color: #a7f3d0; background: linear-gradient(105deg, #f0fdf4, #ecfdf5); }
     .state-balance .penguapan-label { color: #065f46; }
     .state-balance .penguapan-value { color: #059669; }
     .state-balance .penguapan-status-badge { background: #a7f3d0; color: #065f46; }
 
-    /* State: penguapan (positif) */
     .state-penguapan { border-color: #fcd34d; background: linear-gradient(105deg, #fffbeb, #fef9e6); }
     .state-penguapan .penguapan-label { color: #92400e; }
     .state-penguapan .penguapan-value { color: #d97706; }
     .state-penguapan .penguapan-status-badge { background: #fcd34d; color: #78350f; }
 
-    /* State: kekurangan (negatif) */
     .state-kekurangan { border-color: #fca5a5; background: linear-gradient(105deg, #fef2f2, #fff5f5); }
     .state-kekurangan .penguapan-label { color: #7f1d1d; }
     .state-kekurangan .penguapan-value { color: #dc2626; }
     .state-kekurangan .penguapan-status-badge { background: #fca5a5; color: #7f1d1d; }
 
-    /* Detail breakdown */
     .penguapan-detail {
       border-top: 1px solid rgba(0,0,0,0.07);
       padding: 0.5rem 1.1rem;
@@ -204,7 +194,6 @@
     }
     .penguapan-detail span { display: flex; align-items: center; gap: 4px; }
 
-    /* ACTION BUTTONS */
     .action-buttons {
       display: flex; gap: 0.6rem;
       padding: 0 1.2rem 0.8rem; flex-wrap: wrap;
@@ -224,7 +213,6 @@
     .btn-unlock { background: #1e40af; color: white; }
     .btn-jam { background: #0f3460; color: white; }
 
-    /* HOUR SELECTOR */
     .hour-selector {
       display: flex; gap: 0.7rem; align-items: center;
       padding: 0.8rem 1.2rem 1.2rem;
@@ -239,7 +227,6 @@
       font-weight: 500; color: var(--text);
     }
 
-    /* GRAND TOTAL */
     .grand-card {
       background: linear-gradient(135deg, #0f3460, #16213e);
       border-radius: var(--radius);
@@ -259,7 +246,6 @@
     .grand-number { font-size: 2.8rem; font-weight: 800; color: white; font-family: 'DM Mono', monospace; letter-spacing: -0.03em; }
     .grand-sub { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
 
-    /* SHIFT */
     .shift-double {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 1.5rem; margin-bottom: 1.2rem;
@@ -281,15 +267,11 @@
     .hour-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
     .hour-table th { background: #fafcff; padding: 0.7rem 0.3rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: #374151; }
     .hour-table td { padding: 0.55rem 0.3rem; border-bottom: 1px solid #f1f5f9; text-align: center; }
-    .hour-input { width: 82px; text-align: center; padding: 0.4rem; border-radius: 0.7rem; font-size: 0.78rem; }
-    .penguapan-jam-cell {
-      font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 700;
-      padding: 0.3rem 0.5rem; border-radius: 0.6rem; white-space: nowrap;
+    .hour-input {
+      width: 88px; text-align: center; padding: 0.4rem; border-radius: 0.7rem;
+      font-size: 0.78rem; background: #f8fafd; color: #1e293b;
+      border: 1px solid #e2e8f0; cursor: default;
     }
-    .pgp-pos-green { background: #fef9c3; color: #854d0e; }
-    .pgp-pos-blue  { background: #dbeafe; color: #1e40af; }
-    .pgp-neg  { background: #fef2f2; color: #dc2626; }
-    .pgp-zero { background: #f0fdf4; color: #15803d; }
     .shift-summary {
       background: #f8fafd; margin: 0.8rem 1rem;
       padding: 0.7rem 1rem; border-radius: 1.2rem;
@@ -337,16 +319,14 @@
 <body>
 <div class="container">
 
-  <!-- HERO -->
   <div class="hero">
     <div class="hero-left">
       <h1><i class="fas fa-gas-pump"></i> SPBU 3417603 &middot; TOTALISATOR PERJAM</h1>
-      <p>Aplikasi Perhitungan Totalisator Real-Time </p>
+      <p>Aplikasi Perhitungan Totalisator Per-jam Realtime</p>
     </div>
-    <div class="hero-badge"><i class="fas fa-bolt"></i></div>
+    <div class="hero-badge"><i class="fas fa-hand-pointer"></i> Made With Love By Ag Windy</div>
   </div>
 
-  <!-- TWIN GRID -->
   <div class="twin-grid">
     <!-- PERTALITE -->
     <div class="product-card">
@@ -356,7 +336,7 @@
       </div>
       <div class="table-wrap">
         <table class="data-table">
-          <thead><tr><th>Nozzle</th><th>Totalisator Awal</th><th>Totalisator Akhir</th><th>Terjual (L)</th></tr></thead>
+          <thead><tr><th>Nozzle</th><th>Meter Awal</th><th>Meter Akhir</th><th>Terjual (L)</th></tr></thead>
           <tbody>
             <tr><td><b>A1</b></td><td><input type="number" id="awalA1" placeholder="0"></td><td><input type="number" id="akhirA1" placeholder="0"></td><td class="jual-cell" id="jualA1">0</td></tr>
             <tr><td><b>A2</b></td><td><input type="number" id="awalA2" placeholder="0"></td><td><input type="number" id="akhirA2" placeholder="0"></td><td class="jual-cell" id="jualA2">0</td></tr>
@@ -371,7 +351,6 @@
         <div class="input-group"><label>Sisa Hitung (Awal − Jual)</label><input type="number" id="hasilPertalite" readonly placeholder="0"></div>
       </div>
 
-      <!-- PENGUAPAN CARD AUTO -->
       <div class="penguapan-card state-balance" id="penguapanCardPertalite">
         <div class="penguapan-inner">
           <div class="penguapan-left">
@@ -412,7 +391,7 @@
       </div>
       <div class="table-wrap">
         <table class="data-table">
-          <thead><tr><th>Nozzle</th><th>Totalisator Awal</th><th>Totalisator Akhir</th><th>Terjual (L)</th></tr></thead>
+          <thead><tr><th>Nozzle</th><th>Meter Awal</th><th>Meter Akhir</th><th>Terjual (L)</th></tr></thead>
           <tbody>
             <tr><td><b>B1</b></td><td><input type="number" id="awalB1" placeholder="0"></td><td><input type="number" id="akhirB1" placeholder="0"></td><td class="jual-cell pertamax-jual" id="jualB1">0</td></tr>
             <tr><td><b>B2</b></td><td><input type="number" id="awalB2" placeholder="0"></td><td><input type="number" id="akhirB2" placeholder="0"></td><td class="jual-cell pertamax-jual" id="jualB2">0</td></tr>
@@ -427,7 +406,6 @@
         <div class="input-group"><label>Sisa Hitung (Awal − Jual)</label><input type="number" id="hasilPertamax" readonly placeholder="0"></div>
       </div>
 
-      <!-- PENGUAPAN CARD AUTO -->
       <div class="penguapan-card state-balance" id="penguapanCardPertamax">
         <div class="penguapan-inner">
           <div class="penguapan-left">
@@ -461,7 +439,6 @@
     </div>
   </div>
 
-  <!-- GRAND TOTAL -->
   <div class="grand-card">
     <div>
       <div class="grand-label"><i class="fas fa-chart-bar"></i> Grand Total Penjualan Nozzle</div>
@@ -476,7 +453,6 @@
     </div>
   </div>
 
-  <!-- COMPARE INFO -->
   <div class="compare-info" id="compareInfo">
     <i class="fas fa-balance-scale" style="color:#94a3b8"></i>
     <strong>Nozzle vs Jam:</strong>
@@ -484,32 +460,50 @@
     <span class="compare-chip chip-ok" id="comparePertamax">Pertamax: 0 L</span>
   </div>
 
-  <!-- SHIFT -->
   <div class="shift-double">
     <div class="shift-panel">
       <div class="shift-title pagi-title"><i class="fas fa-sun"></i> SHIFT PAGI <span class="time-badge">05:00 – 13:59</span></div>
       <div style="overflow-x:auto;padding:0 0.8rem">
-        <table class="hour-table"><thead><tr><th>Jam</th><th>Pertalite (L)</th><th>Pertamax (L)</th><th style="color:#b45309">Penguapan Pertalite</th><th style="color:#1d4ed8">Pgp Pertamax</th></tr></thead><tbody id="tbodyPagi"></tbody></table>
+        <table class="hour-table">
+          <thead>
+            <tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr>
+          </thead>
+          <tbody id="tbodyPagi"></tbody>
+        </table>
       </div>
       <div class="shift-summary" id="summaryPagi"></div>
     </div>
     <div class="shift-panel">
-      <div class="shift-title sore-title"><i class="fas fa-moon"></i> SHIFT SORE <span class="time-badge">14:00 – 22:00</span></div>
+      <div class="shift-title sore-title"><i class="fas fa-moon"></i> SHIFT SORE <span style="font-size:0.7rem;">14:00 – 22:00</span></div>
       <div style="overflow-x:auto;padding:0 0.8rem">
-        <table class="hour-table"><thead><tr><th>Jam</th><th>Pertalite (L)</th><th>Pertamax (L)</th><th style="color:#b45309">Penguapan Pertalite</th><th style="color:#1d4ed8">Pgp Pertamax</th></tr></thead><tbody id="tbodySore"></tbody></table>
+        <table class="hour-table">
+          <thead>
+            <tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr>
+          </thead>
+          <tbody id="tbodySore"></tbody>
+        </table>
       </div>
       <div class="shift-summary" id="summarySore"></div>
     </div>
   </div>
   <div class="btn-group-shift">
-    <button class="btn-modern" onclick="resetAllHourly()"><i class="fas fa-trash-alt"></i> Reset Semua Jam</button>
-    <button class="btn-modern btn-primary" onclick="syncShiftToNozzle()"><i class="fas fa-balance-scale"></i> Samakan Total Shift dengan Nozzle</button>
+    <button class="btn-modern" onclick="resetAllHourly()"><i class="fas fa-trash-alt"></i> Reset Semua Jam (Hapus Manual)</button>
+    <button class="btn-modern btn-primary" onclick="syncShiftToNozzle()"><i class="fas fa-balance-scale"></i> Samakan Total Shift dengan Nozzle (Rata Ulang)</button>
   </div>
 
 </div>
 <script>
-  let hourlyDataset = [];
-  for (let i = 5; i <= 22; i++) hourlyDataset.push({ jam: i, pertalite: 0, pertamax: 0 });
+  // ================= DATA GLOBAL =================
+  let hourlyDataset = []; // { jam, jualP, susutP, jualM, susutM, manualP, manualM } -> manual flag untuk jual (karena susut proporsional)
+  let manualFlag = { pertalite: new Array(18).fill(false), pertamax: new Array(18).fill(false) };
+  for (let i = 5; i <= 22; i++) {
+    hourlyDataset.push({ 
+      jam: i, 
+      jualPertalite: 0, susutPertalite: 0, 
+      jualPertamax: 0, susutPertamax: 0 
+    });
+  }
+
   let lockPertalite = false, lockPertamax = false;
   const nozzlePA = ['A1','A2','C'], nozzleMA = ['B1','B2','D'];
 
@@ -519,8 +513,6 @@
     const stokAwal = parseFloat(document.getElementById(isP ? 'stokAwalPertalite' : 'stokAwalPertamax').value) || 0;
     const terjual  = parseFloat(document.getElementById(isP ? 'penjualanPertalite' : 'penjualanPertamax').value) || 0;
     const stokAkhir = parseFloat(document.getElementById(isP ? 'stokAkhirPertalite' : 'stokAkhirPertamax').value) || 0;
-
-    // Rumus: Penguapan = Stok Awal - Terjual - Stok Akhir
     const penguapan = stokAwal - terjual - stokAkhir;
 
     const card   = document.getElementById(isP ? 'penguapanCardPertalite' : 'penguapanCardPertamax');
@@ -529,15 +521,11 @@
     const labelEl = document.getElementById(isP ? 'penguapanLabelPertalite' : 'penguapanLabelPertamax');
     const formEl  = document.getElementById(isP ? 'penguapanFormulaPertalite' : 'penguapanFormulaPertamax');
 
-    // Detail update
     document.getElementById(isP ? 'detPAwal' : 'detMAwal').textContent = stokAwal.toLocaleString('id-ID');
     document.getElementById(isP ? 'detPJual' : 'detMJual').textContent = terjual.toLocaleString('id-ID');
     document.getElementById(isP ? 'detPAkhir' : 'detMAkhir').textContent = stokAkhir.toLocaleString('id-ID');
-
-    // Formula string
     formEl.textContent = `${stokAwal.toLocaleString('id-ID')} − ${terjual.toLocaleString('id-ID')} − ${stokAkhir.toLocaleString('id-ID')} = ${penguapan.toFixed(2)} L`;
 
-    // State logic — penguapan positif = stok kurang (minus), penguapan negatif = susut/penguapan (plus)
     card.classList.remove('state-balance','state-penguapan','state-kekurangan');
     if (stokAwal === 0 && terjual === 0 && stokAkhir === 0) {
       card.classList.add('state-balance');
@@ -549,17 +537,103 @@
       valEl.textContent = '0.00 L';
       badgeEl.textContent = '✓ Balance';
       labelEl.innerHTML = '<i class="fas fa-check-circle"></i> Stok Seimbang';
-    } else if (penguapan < 0) {
+    } else if (penguapan > 0) {
       card.classList.add('state-penguapan');
-      valEl.textContent = '+' + Math.abs(penguapan).toFixed(2) + ' L';
+      valEl.textContent = '+' + penguapan.toFixed(2) + ' L';
       badgeEl.textContent = '⚠ Penguapan / Susut';
       labelEl.innerHTML = '<i class="fas fa-tint"></i> Penguapan / Susut Stok';
     } else {
       card.classList.add('state-kekurangan');
-      valEl.textContent = '-' + penguapan.toFixed(2) + ' L';
+      valEl.textContent = penguapan.toFixed(2) + ' L';
       badgeEl.textContent = '✗ Stok Kurang / Selisih';
       labelEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Kekurangan Stok';
     }
+    return penguapan;
+  }
+
+  // ===== DISTRIBUSI OTOMATIS (hanya untuk jam yang belum manual) =====
+  function distributeToHours() {
+    const totalJualP = parseFloat(document.getElementById('penjualanPertalite').value) || 0;
+    const totalJualM = parseFloat(document.getElementById('penjualanPertamax').value) || 0;
+    const totalSusutP = parseFloat(document.getElementById('hasilPertalite').value) || 0;
+    const totalSusutM = parseFloat(document.getElementById('hasilPertamax').value) || 0;
+
+    // Hitung total penjualan yang sudah manual (terkunci)
+    let manualJualP = 0, manualJualM = 0;
+    let manualCountP = 0, manualCountM = 0;
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      if (manualFlag.pertalite[i]) {
+        manualJualP += hourlyDataset[i].jualPertalite;
+        manualCountP++;
+      }
+      if (manualFlag.pertamax[i]) {
+        manualJualM += hourlyDataset[i].jualPertamax;
+        manualCountM++;
+      }
+    }
+
+    // Sisa penjualan yang harus didistribusikan ke jam non-manual
+    const sisaJualP = totalJualP - manualJualP;
+    const sisaJualM = totalJualM - manualJualM;
+    const nonManualCountP = hourlyDataset.length - manualCountP;
+    const nonManualCountM = hourlyDataset.length - manualCountM;
+
+    // Sisa susut (penguapan) didistribusikan proporsional terhadap penjualan di jam non-manual nanti
+    // Karena susut per jam idealnya proporsional dengan penjualan di jam tersebut, kita hitung dulu sisa susut.
+    let manualSusutP = 0, manualSusutM = 0;
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      if (manualFlag.pertalite[i]) manualSusutP += hourlyDataset[i].susutPertalite;
+      if (manualFlag.pertamax[i]) manualSusutM += hourlyDataset[i].susutPertamax;
+    }
+    const sisaSusutP = totalSusutP - manualSusutP;
+    const sisaSusutM = totalSusutM - manualSusutM;
+
+    // Isi untuk jam non-manual
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      if (!manualFlag.pertalite[i]) {
+        if (nonManualCountP > 0) {
+          hourlyDataset[i].jualPertalite = parseFloat((sisaJualP / nonManualCountP).toFixed(2));
+        } else {
+          hourlyDataset[i].jualPertalite = 0;
+        }
+      }
+      if (!manualFlag.pertamax[i]) {
+        if (nonManualCountM > 0) {
+          hourlyDataset[i].jualPertamax = parseFloat((sisaJualM / nonManualCountM).toFixed(2));
+        } else {
+          hourlyDataset[i].jualPertamax = 0;
+        }
+      }
+    }
+
+    // Setelah penjualan non-manual terisi, hitung proporsi susut berdasarkan penjualan di jam non-manual
+    // Hitung total penjualan non-manual untuk proporsi
+    let nonManualJualP = 0, nonManualJualM = 0;
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      if (!manualFlag.pertalite[i]) nonManualJualP += hourlyDataset[i].jualPertalite;
+      if (!manualFlag.pertamax[i]) nonManualJualM += hourlyDataset[i].jualPertamax;
+    }
+
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      if (!manualFlag.pertalite[i]) {
+        if (nonManualJualP !== 0 && sisaSusutP !== 0) {
+          const prop = hourlyDataset[i].jualPertalite / nonManualJualP;
+          hourlyDataset[i].susutPertalite = parseFloat((sisaSusutP * prop).toFixed(2));
+        } else {
+          hourlyDataset[i].susutPertalite = parseFloat((sisaSusutP / nonManualCountP).toFixed(2)) || 0;
+        }
+      }
+      if (!manualFlag.pertamax[i]) {
+        if (nonManualJualM !== 0 && sisaSusutM !== 0) {
+          const prop = hourlyDataset[i].jualPertamax / nonManualJualM;
+          hourlyDataset[i].susutPertamax = parseFloat((sisaSusutM * prop).toFixed(2));
+        } else {
+          hourlyDataset[i].susutPertamax = parseFloat((sisaSusutM / nonManualCountM).toFixed(2)) || 0;
+        }
+      }
+    }
+
+    renderSeparateShifts();
   }
 
   // ===== HITUNG NOZZLE =====
@@ -581,7 +655,6 @@
     });
     document.getElementById('penjualanPertalite').value = totalP;
     document.getElementById('penjualanPertamax').value = totalM;
-    // Hitung sisa stok
     const sP = (parseFloat(document.getElementById('stokAwalPertalite').value)||0) - totalP;
     const sM = (parseFloat(document.getElementById('stokAwalPertamax').value)||0) - totalM;
     document.getElementById('hasilPertalite').value = sP.toFixed(2);
@@ -589,155 +662,77 @@
     document.getElementById('grandTotal').textContent = (totalP + totalM).toLocaleString('id-ID') + ' L';
     document.getElementById('grandPertalite').textContent = totalP.toLocaleString('id-ID') + ' L';
     document.getElementById('grandPertamax').textContent = totalM.toLocaleString('id-ID') + ' L';
-    // Auto-hitung penguapan setiap perubahan
     hitungPenguapanOtomatis('pertalite');
     hitungPenguapanOtomatis('pertamax');
-    renderSeparateShifts();
-    refreshPenguapanJam();
-    updateShiftSummaries();
+    distributeToHours(); // distribusi ulang dengan mempertahankan manual
   }
 
-  // ===== SHIFT — INPUT EDITABLE, PENGUAPAN PROPORSIONAL TERPISAH =====
+  // ===== RENDER SHIFT (READONLY) =====
   function renderSeparateShifts() {
     const tbPagi = document.getElementById('tbodyPagi');
     const tbSore = document.getElementById('tbodySore');
     tbPagi.innerHTML = ''; tbSore.innerHTML = '';
 
-    // Ambil total nozzle & penguapan dari parameter atas
-    const totalP  = parseFloat(document.getElementById('penjualanPertalite').value) || 0;
-    const totalM  = parseFloat(document.getElementById('penjualanPertamax').value) || 0;
-
-    // Penguapan total dari card (strip tanda + dan " L")
-    const rawPgpP = document.getElementById('penguapanValuePertalite').textContent.replace(/[+L\s]/g,'');
-    const rawPgpM = document.getElementById('penguapanValuePertamax').textContent.replace(/[+L\s]/g,'');
-    const penguapanTotalP = parseFloat(rawPgpP) || 0;
-    const penguapanTotalM = parseFloat(rawPgpM) || 0;
-
-    // Hitung total penjualan semua jam (untuk bobot proporsi)
-    const sumJamP = hourlyDataset.reduce((a, b) => a + (b.pertalite || 0), 0);
-    const sumJamM = hourlyDataset.reduce((a, b) => a + (b.pertamax  || 0), 0);
-
-    hourlyDataset.forEach(item => {
+    hourlyDataset.forEach((item, idx) => {
       const row = document.createElement('tr');
-
-      // Jam
-      const jamTd = document.createElement('td');
-      jamTd.innerHTML = `<b>${item.jam.toString().padStart(2,'0')}:00</b>`;
-
-      // --- Pertalite editable ---
-      const pTd = document.createElement('td');
-      const pInp = document.createElement('input');
-      pInp.type = 'number'; pInp.value = item.pertalite || '';
-      pInp.classList.add('hour-input');
-      pInp.addEventListener('input', e => {
-        item.pertalite = parseFloat(e.target.value) || 0;
-        updateShiftSummaries();
-        refreshPenguapanJam(); // re-render hanya kolom penguapan
-      });
-      pTd.appendChild(pInp);
-
-      // --- Pertamax editable ---
-      const mTd = document.createElement('td');
-      const mInp = document.createElement('input');
-      mInp.type = 'number'; mInp.value = item.pertamax || '';
-      mInp.classList.add('hour-input');
-      mInp.addEventListener('input', e => {
-        item.pertamax = parseFloat(e.target.value) || 0;
-        updateShiftSummaries();
-        refreshPenguapanJam();
-      });
-      mTd.appendChild(mInp);
-
-      // --- Penguapan Pertalite per jam (proporsional bobot) ---
-      const pgpP = sumJamP > 0
-        ? (item.pertalite / sumJamP) * penguapanTotalP
-        : (totalP > 0 ? penguapanTotalP / hourlyDataset.length : 0);
-      const pgpPTd = document.createElement('td');
-      pgpPTd.setAttribute('data-pgp-p', '');
-      pgpPTd.innerHTML = pgpBadge(pgpP, 'green');
-
-      // --- Penguapan Pertamax per jam (proporsional bobot) ---
-      const pgpM = sumJamM > 0
-        ? (item.pertamax / sumJamM) * penguapanTotalM
-        : (totalM > 0 ? penguapanTotalM / hourlyDataset.length : 0);
-      const pgpMTd = document.createElement('td');
-      pgpMTd.setAttribute('data-pgp-m', '');
-      pgpMTd.innerHTML = pgpBadge(pgpM, 'blue');
-
-      row.appendChild(jamTd); row.appendChild(pTd); row.appendChild(mTd);
-      row.appendChild(pgpPTd); row.appendChild(pgpMTd);
-      if (item.jam < 14) tbPagi.appendChild(row); else tbSore.appendChild(row);
+      row.appendChild(createCell(`${item.jam.toString().padStart(2,'0')}:00`));
+      
+      // Pertalite Jual (readonly)
+      const pJual = document.createElement('input');
+      pJual.type = 'text'; pJual.value = item.jualPertalite.toFixed(2);
+      pJual.classList.add('hour-input'); pJual.readOnly = true;
+      row.appendChild(createCellWithInput(pJual));
+      
+      // Pertalite Susut (readonly)
+      const pSusut = document.createElement('input');
+      pSusut.type = 'text'; pSusut.value = item.susutPertalite.toFixed(2);
+      pSusut.classList.add('hour-input'); pSusut.readOnly = true;
+      row.appendChild(createCellWithInput(pSusut));
+      
+      // Pertamax Jual (readonly)
+      const mJual = document.createElement('input');
+      mJual.type = 'text'; mJual.value = item.jualPertamax.toFixed(2);
+      mJual.classList.add('hour-input'); mJual.readOnly = true;
+      row.appendChild(createCellWithInput(mJual));
+      
+      // Pertamax Susut (readonly)
+      const mSusut = document.createElement('input');
+      mSusut.type = 'text'; mSusut.value = item.susutPertamax.toFixed(2);
+      mSusut.classList.add('hour-input'); mSusut.readOnly = true;
+      row.appendChild(createCellWithInput(mSusut));
+      
+      if (item.jam < 14) tbPagi.appendChild(row);
+      else tbSore.appendChild(row);
     });
     updateShiftSummaries();
   }
 
-  // Helper: badge warna untuk penguapan
-  function pgpBadge(val, tipe) {
-    let cls = 'pgp-zero', sign = '';
-    if (val > 0.0005) { cls = tipe === 'green' ? 'pgp-pos-green' : 'pgp-pos-blue'; sign = '+'; }
-    else if (val < -0.0005) { cls = 'pgp-neg'; }
-    return `<span class="penguapan-jam-cell ${cls}">${sign}${val.toFixed(3)}</span>`;
-  }
-
-  // Re-render hanya kolom penguapan tanpa rebuild seluruh tabel
-  function refreshPenguapanJam() {
-    const rawPgpP = document.getElementById('penguapanValuePertalite').textContent.replace(/[+L\s]/g,'');
-    const rawPgpM = document.getElementById('penguapanValuePertamax').textContent.replace(/[+L\s]/g,'');
-    const penguapanTotalP = parseFloat(rawPgpP) || 0;
-    const penguapanTotalM = parseFloat(rawPgpM) || 0;
-    const sumJamP = hourlyDataset.reduce((a, b) => a + (b.pertalite || 0), 0);
-    const sumJamM = hourlyDataset.reduce((a, b) => a + (b.pertamax  || 0), 0);
-
-    const allRows = document.querySelectorAll('#tbodyPagi tr, #tbodySore tr');
-    allRows.forEach((row, i) => {
-      const item = hourlyDataset[i];
-      if (!item) return;
-      const pgpP = sumJamP > 0 ? (item.pertalite / sumJamP) * penguapanTotalP : 0;
-      const pgpM = sumJamM > 0 ? (item.pertamax  / sumJamM) * penguapanTotalM : 0;
-      const pgpPCell = row.querySelector('[data-pgp-p]');
-      const pgpMCell = row.querySelector('[data-pgp-m]');
-      if (pgpPCell) pgpPCell.innerHTML = pgpBadge(pgpP, 'green');
-      if (pgpMCell) pgpMCell.innerHTML = pgpBadge(pgpM, 'blue');
-    });
-  }
+  function createCell(text) { const td = document.createElement('td'); td.innerText = text; return td; }
+  function createCellWithInput(inp) { const td = document.createElement('td'); td.appendChild(inp); return td; }
 
   function updateShiftSummaries() {
-    let pP=0,pM=0,sP=0,sM=0;
+    let pP=0, pM=0, sP=0, sM=0;
+    let susutPagiP=0, susutPagiM=0, susutSoreP=0, susutSoreM=0;
     hourlyDataset.forEach(item => {
-      if (item.jam < 14) { pP+=item.pertalite||0; pM+=item.pertamax||0; }
-      else { sP+=item.pertalite||0; sM+=item.pertamax||0; }
+      if (item.jam < 14) {
+        pP += item.jualPertalite; susutPagiP += item.susutPertalite;
+        pM += item.jualPertamax; susutPagiM += item.susutPertamax;
+      } else {
+        sP += item.jualPertalite; susutSoreP += item.susutPertalite;
+        sM += item.jualPertamax; susutSoreM += item.susutPertamax;
+      }
     });
-
-    // Penguapan total dari card atas
-    const rawPgpP = document.getElementById('penguapanValuePertalite').textContent.replace(/[+L\s]/g,'');
-    const rawPgpM = document.getElementById('penguapanValuePertamax').textContent.replace(/[+L\s]/g,'');
-    const pgpTotalP = parseFloat(rawPgpP) || 0;
-    const pgpTotalM = parseFloat(rawPgpM) || 0;
-
-    // Proporsi per shift berdasarkan bobot penjualan
-    const totJamP = pP + sP;
-    const totJamM = pM + sM;
-    const pgpPagiP = totJamP > 0 ? (pP / totJamP) * pgpTotalP : pgpTotalP / 2;
-    const pgpSoreP = totJamP > 0 ? (sP / totJamP) * pgpTotalP : pgpTotalP / 2;
-    const pgpPagiM = totJamM > 0 ? (pM / totJamM) * pgpTotalM : pgpTotalM / 2;
-    const pgpSoreM = totJamM > 0 ? (sM / totJamM) * pgpTotalM : pgpTotalM / 2;
-
-    const pgpColor = v => v < 0 ? '#dc2626' : v > 0 ? '#d97706' : '#059669';
-    const pgpSign  = v => v > 0 ? '+' : '';
-
     document.getElementById('summaryPagi').innerHTML = `
-      <div class="shift-stat"><div class="val" style="color:#15803d">${pP.toFixed(2)} L</div><div class="lbl">Pertalite</div></div>
-      <div class="shift-stat"><div class="val" style="color:#1d4ed8">${pM.toFixed(2)} L</div><div class="lbl">Pertamax</div></div>
-      <div class="shift-stat"><div class="val">${(pP+pM).toFixed(2)} L</div><div class="lbl">Total Pagi</div></div>
-      <div class="shift-stat"><div class="val" style="color:${pgpColor(pgpPagiP)};font-size:0.9rem">${pgpSign(pgpPagiP)}${pgpPagiP.toFixed(3)}</div><div class="lbl" style="color:#b45309">Pgp Pertalite</div></div>
-      <div class="shift-stat"><div class="val" style="color:${pgpColor(pgpPagiM)};font-size:0.9rem">${pgpSign(pgpPagiM)}${pgpPagiM.toFixed(3)}</div><div class="lbl" style="color:#1d4ed8">Pgp Pertamax</div></div>`;
-
+      <div class="shift-stat"><div class="val" style="color:#15803d">${pP.toFixed(1)} L</div><div class="lbl">Jual Pertalite</div></div>
+      <div class="shift-stat"><div class="val" style="color:#eab308">${susutPagiP.toFixed(1)} L</div><div class="lbl">Susut Pertalite</div></div>
+      <div class="shift-stat"><div class="val" style="color:#1d4ed8">${pM.toFixed(1)} L</div><div class="lbl">Jual Pertamax</div></div>
+      <div class="shift-stat"><div class="val" style="color:#eab308">${susutPagiM.toFixed(1)} L</div><div class="lbl">Susut Pertamax</div></div>`;
     document.getElementById('summarySore').innerHTML = `
-      <div class="shift-stat"><div class="val" style="color:#15803d">${sP.toFixed(2)} L</div><div class="lbl">Pertalite</div></div>
-      <div class="shift-stat"><div class="val" style="color:#1d4ed8">${sM.toFixed(2)} L</div><div class="lbl">Pertamax</div></div>
-      <div class="shift-stat"><div class="val">${(sP+sM).toFixed(2)} L</div><div class="lbl">Total Sore</div></div>
-      <div class="shift-stat"><div class="val" style="color:${pgpColor(pgpSoreP)};font-size:0.9rem">${pgpSign(pgpSoreP)}${pgpSoreP.toFixed(3)}</div><div class="lbl" style="color:#b45309">Pgp Pertalite</div></div>
-      <div class="shift-stat"><div class="val" style="color:${pgpColor(pgpSoreM)};font-size:0.9rem">${pgpSign(pgpSoreM)}${pgpSoreM.toFixed(3)}</div><div class="lbl" style="color:#1d4ed8">Pgp Pertamax</div></div>`;
+      <div class="shift-stat"><div class="val" style="color:#15803d">${sP.toFixed(1)} L</div><div class="lbl">Jual Pertalite</div></div>
+      <div class="shift-stat"><div class="val" style="color:#eab308">${susutSoreP.toFixed(1)} L</div><div class="lbl">Susut Pertalite</div></div>
+      <div class="shift-stat"><div class="val" style="color:#1d4ed8">${sM.toFixed(1)} L</div><div class="lbl">Jual Pertamax</div></div>
+      <div class="shift-stat"><div class="val" style="color:#eab308">${susutSoreM.toFixed(1)} L</div><div class="lbl">Susut Pertamax</div></div>`;
+
     const nP = parseFloat(document.getElementById('penjualanPertalite').value)||0;
     const nM = parseFloat(document.getElementById('penjualanPertamax').value)||0;
     const totJP = pP+sP, totJM = pM+sM;
@@ -750,6 +745,7 @@
     cpM.textContent = `Pertamax Nozzle ${nM.toFixed(1)} / Jam ${totJM.toFixed(1)} (Δ${selM.toFixed(1)})`;
   }
 
+  // ===== TAMBAH PENJUALAN KE JAM (MANUAL, hanya jam itu saja) =====
   function tambahPenjualanKeJam(produk) {
     const isP = produk === 'pertalite';
     const total = parseFloat(document.getElementById(isP ? 'penjualanPertalite' : 'penjualanPertamax').value)||0;
@@ -757,13 +753,41 @@
     if (!total) { alert('Total penjualan masih 0. Isi meter nozzle terlebih dahulu.'); return; }
     const idx = hourlyDataset.findIndex(d => d.jam === jam);
     if (idx !== -1) {
-      if (isP) hourlyDataset[idx].pertalite += total;
-      else hourlyDataset[idx].pertamax += total;
-      renderSeparateShifts();
-      alert(`Berhasil tambah ${total.toFixed(2)} L ${produk.toUpperCase()} ke jam ${jam}:00`);
+      if (isP) {
+        hourlyDataset[idx].jualPertalite += total;
+        manualFlag.pertalite[idx] = true; // tandai sebagai manual
+      } else {
+        hourlyDataset[idx].jualPertamax += total;
+        manualFlag.pertamax[idx] = true;
+      }
+      // Setelah manual, kita harus mendistribusikan ulang sisa ke jam non-manual
+      distributeToHours();
+      alert(`Berhasil menambahkan ${total.toFixed(2)} L ${produk.toUpperCase()} ke jam ${jam}:00 (jam ini dikunci manual).`);
     }
   }
 
+  // ===== RESET ALL JAM (hapus semua manual, rata ulang) =====
+  function resetAllHourly() {
+    // Reset manual flags
+    manualFlag.pertalite.fill(false);
+    manualFlag.pertamax.fill(false);
+    // Set semua nilai ke 0 dulu
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      hourlyDataset[i].jualPertalite = 0;
+      hourlyDataset[i].susutPertalite = 0;
+      hourlyDataset[i].jualPertamax = 0;
+      hourlyDataset[i].susutPertamax = 0;
+    }
+    // Distribusi ulang dari total nozzle & susut
+    distributeToHours();
+    alert('Semua jam direset (manual dibuang) dan didistribusi ulang.');
+  }
+
+  function syncShiftToNozzle() {
+    resetAllHourly(); // sama: buang manual, distribusi ulang
+  }
+
+  // ===== LOCK PRODUK =====
   function toggleLockPertalite() {
     lockPertalite = !lockPertalite;
     ['awalA1','awalA2','awalC','stokAwalPertalite'].forEach(id => document.getElementById(id).readOnly = lockPertalite);
@@ -795,30 +819,11 @@
     const txt = `PERTAMAX\nB1: ${document.getElementById('jualB1').textContent} L\nB2: ${document.getElementById('jualB2').textContent} L\nD:  ${document.getElementById('jualD').textContent} L\nTotal Terjual: ${document.getElementById('penjualanPertamax').value} L\nPenguapan/Selisih: ${document.getElementById('penguapanValuePertamax').textContent}`;
     navigator.clipboard.writeText(txt); alert('Data Pertamax disalin!');
   }
-  function resetAllHourly() {
-    hourlyDataset.forEach(d => { d.pertalite=0; d.pertamax=0; });
-    renderSeparateShifts();
-  }
-  function syncShiftToNozzle() {
-    const tP = parseFloat(document.getElementById('penjualanPertalite').value)||0;
-    const tM = parseFloat(document.getElementById('penjualanPertamax').value)||0;
-    const curP = hourlyDataset.reduce((a,b)=>a+b.pertalite,0);
-    const curM = hourlyDataset.reduce((a,b)=>a+b.pertamax,0);
-    if (tP) {
-      const fP = curP===0 ? tP/hourlyDataset.length : tP/curP;
-      hourlyDataset.forEach(d => d.pertalite = curP===0 ? parseFloat(fP.toFixed(2)) : parseFloat((d.pertalite*fP).toFixed(2)));
-    }
-    if (tM) {
-      const fM = curM===0 ? tM/hourlyDataset.length : tM/curM;
-      hourlyDataset.forEach(d => d.pertamax = curM===0 ? parseFloat(fM.toFixed(2)) : parseFloat((d.pertamax*fM).toFixed(2)));
-    }
-    renderSeparateShifts();
-    alert('Total jam disesuaikan dengan nozzle.');
-  }
 
   function populateJamSelect() {
     ['jamPilihPertalite','jamPilihPertamax'].forEach(id => {
       const sel = document.getElementById(id);
+      sel.innerHTML = '';
       for (let j=5; j<=22; j++) {
         const opt = document.createElement('option');
         opt.value=j; opt.textContent=`${j.toString().padStart(2,'0')}:00`;
@@ -827,10 +832,8 @@
     });
   }
 
-  // Pasang listener ke semua input
   document.querySelectorAll('input[type=number]').forEach(inp => inp.addEventListener('input', hitungNozzle));
-
-  window.onload = () => { populateJamSelect(); hitungNozzle(); renderSeparateShifts(); };
+  window.onload = () => { populateJamSelect(); hitungNozzle(); };
 </script>
 </body>
 </html>
