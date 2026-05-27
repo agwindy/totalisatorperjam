@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>SPBU 3417603 | Totalisator Perjam (Manual)</title>
+  <title>SPBU 3417603 | Totalisator Perjam</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -193,7 +193,7 @@
       display: flex;
       gap: 0.6rem;
       align-items: center;
-      padding: 0.8rem 1rem;
+      padding: 0.5rem 1rem;
       flex-wrap: wrap;
       border-top: 1px solid var(--border);
     }
@@ -209,6 +209,12 @@
     }
     .btn-jam {
       background: #0f3460;
+      color: white;
+      padding: 0.7rem 1rem;
+      min-height: 48px;
+    }
+    .btn-susut {
+      background: #d97706;
       color: white;
       padding: 0.7rem 1rem;
       min-height: 48px;
@@ -364,13 +370,13 @@
   <div class="hero">
     <div class="hero-left">
       <h1><i class="fas fa-gas-pump"></i> SPBU 3417603 · TOTALISATOR PERJAM</h1>
-      <p>Input per jam manual | Totalisator baru tidak mengubah data jam yang sudah ada</p>
+      <p>Input manual penjualan & susut per jam | Totalisator baru tidak mengubah data jam</p>
     </div>
     <div class="hero-badge"><i class="fas fa-hand-pointer"></i> Manual Entry</div>
   </div>
 
   <div class="twin-grid">
-    <!-- PERTALITE -->
+    <!-- PERTALITE CARD -->
     <div class="product-card">
       <div class="card-header pertalite-hdr">
         <h2><i class="fas fa-gas-pump"></i> PERTALITE</h2>
@@ -417,13 +423,18 @@
         <button class="mini-btn btn-lock" id="lockPertaliteBtn" onclick="toggleLockPertalite()"><i class="fas fa-lock"></i> Kunci Awal</button>
       </div>
       <div class="hour-selector">
-        <span><i class="fas fa-clock"></i> Tambah penjualan ke jam:</span>
+        <span><i class="fas fa-chart-line"></i> Tambah PENJUALAN ke jam:</span>
         <select id="jamPilihPertalite"></select>
-        <button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertalite')"><i class="fas fa-plus-circle"></i> Tambah ke Jam</button>
+        <button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertalite')"><i class="fas fa-plus-circle"></i> + Jual</button>
+      </div>
+      <div class="hour-selector">
+        <span><i class="fas fa-tint"></i> Tambah SUSUT (Penguapan) ke jam:</span>
+        <select id="jamSusutPilihPertalite"></select>
+        <button class="mini-btn btn-susut" onclick="tambahSusutKeJam('pertalite')"><i class="fas fa-plus-circle"></i> + Susut</button>
       </div>
     </div>
 
-    <!-- PERTAMAX -->
+    <!-- PERTAMAX CARD -->
     <div class="product-card">
       <div class="card-header pertamax-hdr">
         <h2><i class="fas fa-gas-pump"></i> PERTAMAX</h2>
@@ -470,9 +481,14 @@
         <button class="mini-btn btn-lock" id="lockPertamaxBtn" onclick="toggleLockPertamax()"><i class="fas fa-lock"></i> Kunci Awal</button>
       </div>
       <div class="hour-selector">
-        <span><i class="fas fa-clock"></i> Tambah penjualan ke jam:</span>
+        <span><i class="fas fa-chart-line"></i> Tambah PENJUALAN ke jam:</span>
         <select id="jamPilihPertamax"></select>
-        <button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertamax')"><i class="fas fa-plus-circle"></i> Tambah ke Jam</button>
+        <button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertamax')"><i class="fas fa-plus-circle"></i> + Jual</button>
+      </div>
+      <div class="hour-selector">
+        <span><i class="fas fa-tint"></i> Tambah SUSUT (Penguapan) ke jam:</span>
+        <select id="jamSusutPilihPertamax"></select>
+        <button class="mini-btn btn-susut" onclick="tambahSusutKeJam('pertamax')"><i class="fas fa-plus-circle"></i> + Susut</button>
       </div>
     </div>
   </div>
@@ -504,7 +520,9 @@
       <div class="shift-title pagi-title"><i class="fas fa-sun"></i> SHIFT PAGI <span class="time-badge">05:00 – 13:59</span></div>
       <div style="overflow-x:auto;padding:0 0.8rem">
         <table class="hour-table">
-          <thead><tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr></thead>
+          <thead>
+            <tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr>
+          </thead>
           <tbody id="tbodyPagi"></tbody>
         </table>
       </div>
@@ -514,7 +532,9 @@
       <div class="shift-title sore-title"><i class="fas fa-moon"></i> SHIFT SORE <span class="time-badge">14:00 – 22:00</span></div>
       <div style="overflow-x:auto;padding:0 0.8rem">
         <table class="hour-table">
-          <thead><tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr></thead>
+          <thead>
+            <tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr>
+          </thead>
           <tbody id="tbodySore"></tbody>
         </table>
       </div>
@@ -573,11 +593,8 @@
     document.getElementById('grandPertalite').textContent = totalP.toLocaleString('id-ID') + ' L';
     document.getElementById('grandPertamax').textContent = totalM.toLocaleString('id-ID') + ' L';
     
-    // Hitung penguapan untuk tampilan card
     hitungPenguapanOtomatis('pertalite');
     hitungPenguapanOtomatis('pertamax');
-    
-    // Update perbandingan nozzle vs jam (tanpa mengubah nilai jam)
     updateShiftSummaries();
   }
 
@@ -686,7 +703,7 @@
     cpM.textContent = `Pertamax Nozzle ${nM.toFixed(1)} / Jam ${totJM.toFixed(1)} (Δ${selM.toFixed(1)})`;
   }
 
-  // ===== TAMBAH PENJUALAN KE JAM (MANUAL) =====
+  // ===== TAMBAH PENJUALAN KE JAM =====
   function tambahPenjualanKeJam(produk) {
     const isP = produk === 'pertalite';
     const total = parseFloat(document.getElementById(isP ? 'penjualanPertalite' : 'penjualanPertamax').value)||0;
@@ -694,18 +711,33 @@
     if (!total) { alert('Total penjualan masih 0. Isi meter nozzle terlebih dahulu.'); return; }
     const idx = hourlyDataset.findIndex(d => d.jam === jam);
     if (idx !== -1) {
-      if (isP) {
-        hourlyDataset[idx].jualPertalite += total;
-        // Susut tidak diubah manual, tetap seperti sebelumnya
-      } else {
-        hourlyDataset[idx].jualPertamax += total;
-      }
+      if (isP) hourlyDataset[idx].jualPertalite += total;
+      else hourlyDataset[idx].jualPertamax += total;
       renderSeparateShifts();
       alert(`Berhasil menambahkan ${total.toFixed(2)} L ${produk.toUpperCase()} ke jam ${jam}:00`);
     }
   }
 
-  // ===== RESET SEMUA JAM =====
+  // ===== TAMBAH SUSUT KE JAM =====
+  function tambahSusutKeJam(produk) {
+    const isP = produk === 'pertalite';
+    // Ambil nilai selisih stok (penguapan) dari card
+    const totalSusut = parseFloat(document.getElementById(isP ? 'hasilPertalite' : 'hasilPertamax').value)||0;
+    if (totalSusut === 0) {
+      alert(`Nilai susut (penguapan) untuk ${produk.toUpperCase()} adalah 0. Tidak ada yang ditambahkan.`);
+      return;
+    }
+    const jam = parseInt(document.getElementById(isP ? 'jamSusutPilihPertalite' : 'jamSusutPilihPertamax').value);
+    const idx = hourlyDataset.findIndex(d => d.jam === jam);
+    if (idx !== -1) {
+      if (isP) hourlyDataset[idx].susutPertalite += totalSusut;
+      else hourlyDataset[idx].susutPertamax += totalSusut;
+      renderSeparateShifts();
+      alert(`Berhasil menambahkan ${totalSusut.toFixed(2)} L susut ${produk.toUpperCase()} ke jam ${jam}:00`);
+    }
+  }
+
+  // ===== RESET SEMUA JAM (penjualan & susut jadi 0) =====
   function resetAllHourly() {
     for (let i = 0; i < hourlyDataset.length; i++) {
       hourlyDataset[i].jualPertalite = 0;
@@ -714,9 +746,10 @@
       hourlyDataset[i].susutPertamax = 0;
     }
     renderSeparateShifts();
+    alert('Semua data jam telah direset ke 0.');
   }
 
-  // ===== SAMAKAN TOTAL SHIFT DENGAN NOZZLE (distribusi merata) =====
+  // ===== SAMAKAN TOTAL SHIFT DENGAN NOZZLE (rata) =====
   function syncShiftToNozzle() {
     const totalJualP = parseFloat(document.getElementById('penjualanPertalite').value) || 0;
     const totalJualM = parseFloat(document.getElementById('penjualanPertamax').value) || 0;
@@ -767,28 +800,39 @@
 
   // ===== COPY =====
   function copyPertalite() {
-    const txt = `PERTALITE\nA1: ${document.getElementById('jualA1').textContent} L\nA2: ${document.getElementById('jualA2').textContent} L\nC:  ${document.getElementById('jualC').textContent} L\nTotal Terjual: ${document.getElementById('penjualanPertalite').value} L\nPenguapan/Selisih: ${document.getElementById('penguapanValuePertalite').textContent}`;
-    navigator.clipboard.writeText(txt); alert('Data Pertalite disalin!');
+    let jamData = "";
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      jamData += `${hourlyDataset[i].jam}:00 → Jual:${hourlyDataset[i].jualPertalite.toFixed(2)} L, Susut:${hourlyDataset[i].susutPertalite.toFixed(2)} L\n`;
+    }
+    const txt = `PERTALITE\nNozzle: A1=${document.getElementById('jualA1').textContent} L, A2=${document.getElementById('jualA2').textContent} L, C=${document.getElementById('jualC').textContent} L\nTotal Terjual: ${document.getElementById('penjualanPertalite').value} L\nPenguapan Total: ${document.getElementById('penguapanValuePertalite').textContent}\n\nData Per Jam:\n${jamData}`;
+    navigator.clipboard.writeText(txt); alert('Data Pertalite + jam disalin!');
   }
   function copyPertamax() {
-    const txt = `PERTAMAX\nB1: ${document.getElementById('jualB1').textContent} L\nB2: ${document.getElementById('jualB2').textContent} L\nD:  ${document.getElementById('jualD').textContent} L\nTotal Terjual: ${document.getElementById('penjualanPertamax').value} L\nPenguapan/Selisih: ${document.getElementById('penguapanValuePertamax').textContent}`;
-    navigator.clipboard.writeText(txt); alert('Data Pertamax disalin!');
+    let jamData = "";
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      jamData += `${hourlyDataset[i].jam}:00 → Jual:${hourlyDataset[i].jualPertamax.toFixed(2)} L, Susut:${hourlyDataset[i].susutPertamax.toFixed(2)} L\n`;
+    }
+    const txt = `PERTAMAX\nNozzle: B1=${document.getElementById('jualB1').textContent} L, B2=${document.getElementById('jualB2').textContent} L, D=${document.getElementById('jualD').textContent} L\nTotal Terjual: ${document.getElementById('penjualanPertamax').value} L\nPenguapan Total: ${document.getElementById('penguapanValuePertamax').textContent}\n\nData Per Jam:\n${jamData}`;
+    navigator.clipboard.writeText(txt); alert('Data Pertamax + jam disalin!');
   }
 
-  function populateJamSelect() {
-    ['jamPilihPertalite','jamPilihPertamax'].forEach(id => {
+  // ===== INIT =====
+  function populateJamSelects() {
+    const jamRange = [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22];
+    ['jamPilihPertalite', 'jamSusutPilihPertalite', 'jamPilihPertamax', 'jamSusutPilihPertamax'].forEach(id => {
       const sel = document.getElementById(id);
       sel.innerHTML = '';
-      for (let j=5; j<=22; j++) {
+      jamRange.forEach(j => {
         const opt = document.createElement('option');
-        opt.value=j; opt.textContent=`${j.toString().padStart(2,'0')}:00`;
+        opt.value = j;
+        opt.textContent = `${j.toString().padStart(2,'0')}:00`;
         sel.appendChild(opt);
-      }
+      });
     });
   }
 
   document.querySelectorAll('input[type=number]').forEach(inp => inp.addEventListener('input', hitungNozzle));
-  window.onload = () => { populateJamSelect(); hitungNozzle(); renderSeparateShifts(); };
+  window.onload = () => { populateJamSelects(); hitungNozzle(); renderSeparateShifts(); };
 </script>
 </body>
 </html>
