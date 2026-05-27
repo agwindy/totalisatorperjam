@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>SPBU 3417603 · Totalisator & Shift Otomatis</title>
+<title>SPBU 3417603 · Totalisator Perjam</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
@@ -21,6 +21,8 @@
   --px-blue:#0057b8;
   --px-blue-light:#e6eef9;
   --amber:#d97706;
+  --red:#e5363b;
+  --red-light:#fdeaea;
   --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
   --radius:22px;
 }
@@ -95,7 +97,6 @@ input[readonly]{ background:var(--surface2); }
 .input-group label{
   font-size:0.65rem; font-weight:700; text-transform:uppercase; color:var(--text-dim);
 }
-/* Gaya untuk area otomatis di dalam card */
 .auto-section{
   background:var(--surface2);
   margin:12px 20px 20px 20px;
@@ -133,8 +134,35 @@ input[type="range"]::-webkit-slider-thumb{ width:14px; height:14px; background:v
 .btn-jual-pt{ background:var(--pt-green); color:white; }
 .btn-jual-px{ background:var(--px-blue); color:white; }
 .btn-susut{ background:var(--amber); color:white; }
-
-/* SHIFT readonly */
+.lock-section{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:8px;
+  padding:0 20px 16px 20px;
+}
+.lock-btn{
+  border:none;
+  background:var(--surface2);
+  padding:6px 12px;
+  border-radius:40px;
+  font-size:0.7rem;
+  font-weight:700;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.lock-btn.locked{
+  background:var(--red-light);
+  color:var(--red);
+  border:1px solid #f5b8ba;
+}
+.lock-btn.unlocked{
+  background:var(--pt-green-light);
+  color:var(--pt-green);
+  border:1px solid var(--pt-green-mid);
+}
 .shift-double{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px; }
 .shift-panel{
   background:white; border-radius:24px; border:1px solid var(--border); overflow:hidden;
@@ -157,7 +185,13 @@ input[type="range"]::-webkit-slider-thumb{ width:14px; height:14px; background:v
   text-align:center;
   display:inline-block;
   width:100%;
-  color:var(--text-mid);
+  font-weight:600;
+}
+.hour-readonly.positive{
+  color:var(--pt-green);
+}
+.hour-readonly.negative{
+  color:var(--red);
 }
 .shift-summary{
   background:var(--surface2); margin:12px; padding:12px;
@@ -188,8 +222,8 @@ input[type="range"]::-webkit-slider-thumb{ width:14px; height:14px; background:v
 <div class="container">
 
   <div class="hero">
-    <div><h1><i class="fas fa-gas-pump"></i> SPBU 3417603 · TOTALISATOR & SHIFT OTOMATIS</h1><p>Shift terisi otomatis dari tombol +Jual / +Susut per produk</p></div>
-    <button class="btn-print" onclick="exportRingkasanPDF()"><i class="fas fa-file-pdf"></i> Export Ringkasan PDF</button>
+    <div><h1><i class="fas fa-gas-pump"></i> SPBU 3417603 · TOTALISATOR PERJAM</h1><p>Shift terisi otomatis | Logika selisih terbalik (minus = susut, plus = lebih)</p></div>
+    <button class="btn-print" onclick="exportRingkasanPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>
   </div>
 
   <!-- DUA KOLOM PRODUK -->
@@ -198,33 +232,38 @@ input[type="range"]::-webkit-slider-thumb{ width:14px; height:14px; background:v
     <div class="product-card">
       <div class="card-header pertalite-header"><h2><i class="fas fa-leaf"></i> PERTALITE</h2><span class="nozzle-badge">A1 · A2 · C</span></div>
       <div class="table-wrap">
-        <table class="data-table"><thead><tr><th>Nozzle</th><th>Total Awal</th><th>Total Akhir</th><th>Jual (L)</th></tr></thead>
+        <table class="data-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th></tr></thead>
         <tbody>
           <tr><td><b>A1</b></td><td><input type="number" id="awalA1" placeholder="0"></td><td><input type="number" id="akhirA1" placeholder="0"></td><td class="jual-cell" id="jualA1">0</td></tr>
           <tr><td><b>A2</b></td><td><input type="number" id="awalA2" placeholder="0"></td><td><input type="number" id="akhirA2" placeholder="0"></td><td class="jual-cell" id="jualA2">0</td></tr>
           <tr><td><b>C</b></td><td><input type="number" id="awalC" placeholder="0"></td><td><input type="number" id="akhirC" placeholder="0"></td><td class="jual-cell" id="jualC">0</td></tr>
-        </tbody></table>
+        </tbody>
+        </table>
       </div>
       <div class="stok-grid">
-        <div class="input-group"><label>Stok Awal Tangki (L)</label><input type="number" id="stokAwalPertalite" placeholder="0"></div>
+        <div class="input-group"><label>Stok Awal (L)</label><input type="number" id="stokAwalPertalite" placeholder="0"></div>
         <div class="input-group"><label>Total Penjualan (L)</label><input type="number" id="penjualanPertalite" readonly></div>
-        <div class="input-group"><label>Stok Akhir Tangki (L)</label><input type="number" id="stokAkhirPertalite" placeholder="0"></div>
-        <div class="input-group"><label>Selisih / Penguapan (L)</label><input type="number" id="hasilPertalite" readonly></div>
+        <div class="input-group"><label>Stok Akhir (L)</label><input type="number" id="stokAkhirPertalite" placeholder="0"></div>
+        <div class="input-group"><label>Selisih</label><input type="number" id="hasilPertalite" readonly></div>
       </div>
-      <!-- OTOMATIS PERTALITE -->
+      <!-- Tombol kunci untuk totalisator awal dan stok awal Pertalite -->
+      <div class="lock-section">
+        <button id="lockTotPtBtn" class="lock-btn unlocked" onclick="toggleLock('pertalite', 'tot')"><i class="fas fa-lock-open"></i> Kunci Totalisator Awal</button>
+        <button id="lockStokPtBtn" class="lock-btn unlocked" onclick="toggleLock('pertalite', 'stok')"><i class="fas fa-lock-open"></i> Kunci Stok Awal</button>
+      </div>
       <div class="auto-section">
         <div class="auto-title"><i class="fas fa-magic"></i> Tambah ke Shift</div>
         <div class="slider-group">
           <label>Pilih Jam:</label>
           <input type="range" id="sliderJualPt" min="5" max="22" step="1" value="12">
           <span class="jam-badge" id="sliderJualPtVal">12:00</span>
-          <button class="btn-small btn-jual-pt" onclick="tambahJualOtomatis('pertalite')"><i class="fas fa-plus"></i> + Jual (${document.getElementById('penjualanPertalite')?.value || 0} L)</button>
+          <button class="btn-small btn-jual-pt" onclick="tambahJualOtomatis('pertalite')"><i class="fas fa-plus"></i> + Jual (0 L)</button>
         </div>
         <div class="slider-group">
           <label>Pilih Jam Susut:</label>
           <input type="range" id="sliderSusutPt" min="5" max="22" step="1" value="12">
           <span class="jam-badge" id="sliderSusutPtVal">12:00</span>
-          <button class="btn-small btn-susut" onclick="tambahSusutOtomatis('pertalite')"><i class="fas fa-tint"></i> + Susut (${document.getElementById('hasilPertalite')?.value || 0} L)</button>
+          <button class="btn-small btn-susut" onclick="tambahSusutOtomatis('pertalite')"><i class="fas fa-tint"></i> + Susut (0 L)</button>
         </div>
       </div>
     </div>
@@ -233,33 +272,38 @@ input[type="range"]::-webkit-slider-thumb{ width:14px; height:14px; background:v
     <div class="product-card">
       <div class="card-header pertamax-header"><h2><i class="fas fa-bolt"></i> PERTAMAX</h2><span class="nozzle-badge">B1 · B2 · D</span></div>
       <div class="table-wrap">
-        <table class="data-table"><thead><tr><th>Nozzle</th><th>Total Awal</th><th>Total Akhir</th><th>Jual (L)</th></tr></thead>
+        <table class="data-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th></tr></thead>
         <tbody>
           <tr><td><b>B1</b></td><td><input type="number" id="awalB1" placeholder="0"></td><td><input type="number" id="akhirB1" placeholder="0"></td><td class="jual-cell pertamax-jual" id="jualB1">0</td></tr>
           <tr><td><b>B2</b></td><td><input type="number" id="awalB2" placeholder="0"></td><td><input type="number" id="akhirB2" placeholder="0"></td><td class="jual-cell pertamax-jual" id="jualB2">0</td></tr>
           <tr><td><b>D</b></td><td><input type="number" id="awalD" placeholder="0"></td><td><input type="number" id="akhirD" placeholder="0"></td><td class="jual-cell pertamax-jual" id="jualD">0</td></tr>
-        </tbody></table>
+        </tbody>
+        </table>
       </div>
       <div class="stok-grid">
-        <div class="input-group"><label>Stok Awal Tangki (L)</label><input type="number" id="stokAwalPertamax" placeholder="0"></div>
+        <div class="input-group"><label>Stok Awal (L)</label><input type="number" id="stokAwalPertamax" placeholder="0"></div>
         <div class="input-group"><label>Total Penjualan (L)</label><input type="number" id="penjualanPertamax" readonly></div>
-        <div class="input-group"><label>Stok Akhir Tangki (L)</label><input type="number" id="stokAkhirPertamax" placeholder="0"></div>
-        <div class="input-group"><label>Selisih / Penguapan (L)</label><input type="number" id="hasilPertamax" readonly></div>
+        <div class="input-group"><label>Stok Akhir (L)</label><input type="number" id="stokAkhirPertamax" placeholder="0"></div>
+        <div class="input-group"><label>Selisih</label><input type="number" id="hasilPertamax" readonly></div>
       </div>
-      <!-- OTOMATIS PERTAMAX -->
+      <!-- Tombol kunci untuk totalisator awal dan stok awal Pertamax -->
+      <div class="lock-section">
+        <button id="lockTotPxBtn" class="lock-btn unlocked" onclick="toggleLock('pertamax', 'tot')"><i class="fas fa-lock-open"></i> Kunci Totalisator Awal</button>
+        <button id="lockStokPxBtn" class="lock-btn unlocked" onclick="toggleLock('pertamax', 'stok')"><i class="fas fa-lock-open"></i> Kunci Stok Awal</button>
+      </div>
       <div class="auto-section">
         <div class="auto-title"><i class="fas fa-magic"></i> Tambah ke Shift</div>
         <div class="slider-group">
           <label>Pilih Jam:</label>
           <input type="range" id="sliderJualPx" min="5" max="22" step="1" value="12">
           <span class="jam-badge" id="sliderJualPxVal">12:00</span>
-          <button class="btn-small btn-jual-px" onclick="tambahJualOtomatis('pertamax')"><i class="fas fa-plus"></i> + Jual (${document.getElementById('penjualanPertamax')?.value || 0} L)</button>
+          <button class="btn-small btn-jual-px" onclick="tambahJualOtomatis('pertamax')"><i class="fas fa-plus"></i> + Jual (0 L)</button>
         </div>
         <div class="slider-group">
           <label>Pilih Jam Susut:</label>
           <input type="range" id="sliderSusutPx" min="5" max="22" step="1" value="12">
           <span class="jam-badge" id="sliderSusutPxVal">12:00</span>
-          <button class="btn-small btn-susut" onclick="tambahSusutOtomatis('pertamax')"><i class="fas fa-tint"></i> + Susut (${document.getElementById('hasilPertamax')?.value || 0} L)</button>
+          <button class="btn-small btn-susut" onclick="tambahSusutOtomatis('pertamax')"><i class="fas fa-tint"></i> + Susut (0 L)</button>
         </div>
       </div>
     </div>
@@ -271,7 +315,7 @@ input[type="range"]::-webkit-slider-thumb{ width:14px; height:14px; background:v
     <div style="text-align:right;"><div>Pertalite</div><div style="font-size:1.2rem;font-weight:800;color:#86efac;font-family:monospace;" id="grandPertalite">0 L</div><div style="margin-top:8px;">Pertamax</div><div style="font-size:1.2rem;font-weight:800;color:#93c5fd;font-family:monospace;" id="grandPertamax">0 L</div></div>
   </div>
 
-  <!-- SHIFT READONLY (otomatis dari tombol) -->
+  <!-- SHIFT READONLY -->
   <div class="shift-double">
     <div class="shift-panel">
       <div class="shift-title pagi-title"><i class="fas fa-sun"></i> SHIFT PAGI <span style="margin-left:auto;font-size:0.65rem;">05:00 – 13:59</span></div>
@@ -302,13 +346,151 @@ input[type="range"]::-webkit-slider-thumb{ width:14px; height:14px; background:v
 </div>
 
 <script>
-// DATA SHIFT (05:00 - 22:00)
+// DATA SHIFT
 let hourlyDataset = [];
 for(let i=5;i<=22;i++){
   hourlyDataset.push({ jam:i, jualPertalite:0, susutPertalite:0, jualPertamax:0, susutPertamax:0 });
 }
 
-// ================= FUNGSI HITUNG TOTALISATOR =================
+// State kunci
+let lockState = {
+  pertalite: { tot: false, stok: false },
+  pertamax: { tot: false, stok: false }
+};
+
+// ================= LOCALSTORAGE =================
+const STORAGE_KEY = 'spbu_totalisator_shift_data';
+
+function saveAllToLocalStorage() {
+  const dataToSave = {
+    hourlyDataset: hourlyDataset,
+    lockState: lockState,
+    inputs: {}
+  };
+  // Kumpulkan semua nilai input number
+  const inputs = document.querySelectorAll('input[type="number"]');
+  inputs.forEach(inp => {
+    if (inp.id) dataToSave.inputs[inp.id] = inp.value;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+}
+
+function loadFromLocalStorage() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    if (data.hourlyDataset) {
+      hourlyDataset = data.hourlyDataset;
+      renderShifts();
+    }
+    if (data.lockState) {
+      lockState = data.lockState;
+      applyAllLocks();
+    }
+    if (data.inputs) {
+      Object.entries(data.inputs).forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+      });
+    }
+  } catch(e) { console.warn(e); }
+}
+
+// ================= FUNGSI KUNCI =================
+function toggleLock(produk, type) {
+  if (type === 'tot') {
+    lockState[produk].tot = !lockState[produk].tot;
+  } else {
+    lockState[produk].stok = !lockState[produk].stok;
+  }
+  applyAllLocks();
+  saveAllToLocalStorage();
+}
+
+function applyAllLocks() {
+  // Pertalite: totalisator awal (A1, A2, C)
+  const ptTotIds = ['awalA1', 'awalA2', 'awalC'];
+  ptTotIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.readOnly = lockState.pertalite.tot;
+  });
+  // Pertalite: stok awal
+  const ptStokId = 'stokAwalPertalite';
+  const ptStokEl = document.getElementById(ptStokId);
+  if (ptStokEl) ptStokEl.readOnly = lockState.pertalite.stok;
+  
+  // Pertamax: totalisator awal (B1, B2, D)
+  const pxTotIds = ['awalB1', 'awalB2', 'awalD'];
+  pxTotIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.readOnly = lockState.pertamax.tot;
+  });
+  // Pertamax: stok awal
+  const pxStokId = 'stokAwalPertamax';
+  const pxStokEl = document.getElementById(pxStokId);
+  if (pxStokEl) pxStokEl.readOnly = lockState.pertamax.stok;
+  
+  // Update tampilan tombol
+  updateLockButtons();
+}
+
+function updateLockButtons() {
+  // Tombol Pertalite Totalisator
+  const btnTotPt = document.getElementById('lockTotPtBtn');
+  if (btnTotPt) {
+    if (lockState.pertalite.tot) {
+      btnTotPt.innerHTML = '<i class="fas fa-lock"></i> Totalisator Terkunci';
+      btnTotPt.classList.remove('unlocked');
+      btnTotPt.classList.add('locked');
+    } else {
+      btnTotPt.innerHTML = '<i class="fas fa-lock-open"></i> Kunci Totalisator Awal';
+      btnTotPt.classList.remove('locked');
+      btnTotPt.classList.add('unlocked');
+    }
+  }
+  // Tombol Pertalite Stok
+  const btnStokPt = document.getElementById('lockStokPtBtn');
+  if (btnStokPt) {
+    if (lockState.pertalite.stok) {
+      btnStokPt.innerHTML = '<i class="fas fa-lock"></i> Stok Awal Terkunci';
+      btnStokPt.classList.remove('unlocked');
+      btnStokPt.classList.add('locked');
+    } else {
+      btnStokPt.innerHTML = '<i class="fas fa-lock-open"></i> Kunci Stok Awal';
+      btnStokPt.classList.remove('locked');
+      btnStokPt.classList.add('unlocked');
+    }
+  }
+  // Pertamax Totalisator
+  const btnTotPx = document.getElementById('lockTotPxBtn');
+  if (btnTotPx) {
+    if (lockState.pertamax.tot) {
+      btnTotPx.innerHTML = '<i class="fas fa-lock"></i> Totalisator Terkunci';
+      btnTotPx.classList.remove('unlocked');
+      btnTotPx.classList.add('locked');
+    } else {
+      btnTotPx.innerHTML = '<i class="fas fa-lock-open"></i> Kunci Totalisator Awal';
+      btnTotPx.classList.remove('locked');
+      btnTotPx.classList.add('unlocked');
+    }
+  }
+  // Pertamax Stok
+  const btnStokPx = document.getElementById('lockStokPxBtn');
+  if (btnStokPx) {
+    if (lockState.pertamax.stok) {
+      btnStokPx.innerHTML = '<i class="fas fa-lock"></i> Stok Awal Terkunci';
+      btnStokPx.classList.remove('unlocked');
+      btnStokPx.classList.add('locked');
+    } else {
+      btnStokPx.innerHTML = '<i class="fas fa-lock-open"></i> Kunci Stok Awal';
+      btnStokPx.classList.remove('locked');
+      btnStokPx.classList.add('unlocked');
+    }
+  }
+}
+
+// ================= HITUNG TOTALISATOR (FLIPPED LOGIC) =================
 function hitungTotalisator(){
   let totalP=0, totalM=0;
   const nozzlePA=['A1','A2','C'];
@@ -335,59 +517,63 @@ function hitungTotalisator(){
   
   let stokAwalP=parseFloat(document.getElementById('stokAwalPertalite').value)||0;
   let stokAkhirP=parseFloat(document.getElementById('stokAkhirPertalite').value)||0;
-  let selisihP = stokAwalP - totalP - stokAkhirP;
+  let selisihP = -(stokAwalP - totalP - stokAkhirP);
   document.getElementById('hasilPertalite').value=selisihP.toFixed(2);
   
   let stokAwalM=parseFloat(document.getElementById('stokAwalPertamax').value)||0;
   let stokAkhirM=parseFloat(document.getElementById('stokAkhirPertamax').value)||0;
-  let selisihM = stokAwalM - totalM - stokAkhirM;
+  let selisihM = -(stokAwalM - totalM - stokAkhirM);
   document.getElementById('hasilPertamax').value=selisihM.toFixed(2);
   
   return { totalP, totalM, selisihP, selisihM };
 }
 
-// UPDATE LABEL TOMBOL (nilai jual/susut terbaru)
 function updateTombolLabel(){
   const jualPt = parseFloat(document.getElementById('penjualanPertalite').value)||0;
   const susutPt = parseFloat(document.getElementById('hasilPertalite').value)||0;
   const jualPx = parseFloat(document.getElementById('penjualanPertamax').value)||0;
   const susutPx = parseFloat(document.getElementById('hasilPertamax').value)||0;
   const btnJualPt = document.querySelector('.btn-jual-pt');
-  const btnSusutPt = document.querySelector('.auto-section .btn-susut');
+  const btnSusutPt = document.querySelectorAll('.btn-susut')[0];
   const btnJualPx = document.querySelector('.btn-jual-px');
-  const btnSusutPx = document.querySelectorAll('.auto-section .btn-susut')[1];
+  const btnSusutPx = document.querySelectorAll('.btn-susut')[1];
   if(btnJualPt) btnJualPt.innerHTML = `<i class="fas fa-plus"></i> + Jual (${jualPt.toFixed(1)} L)`;
-  if(btnSusutPt) btnSusutPt.innerHTML = `<i class="fas fa-tint"></i> + Susut (${susutPt.toFixed(1)} L)`;
+  if(btnSusutPt) btnSusutPt.innerHTML = `<i class="fas fa-tint"></i> + Susut (${susutPt>=0?'+':''}${susutPt.toFixed(1)} L)`;
   if(btnJualPx) btnJualPx.innerHTML = `<i class="fas fa-plus"></i> + Jual (${jualPx.toFixed(1)} L)`;
-  if(btnSusutPx) btnSusutPx.innerHTML = `<i class="fas fa-tint"></i> + Susut (${susutPx.toFixed(1)} L)`;
+  if(btnSusutPx) btnSusutPx.innerHTML = `<i class="fas fa-tint"></i> + Susut (${susutPx>=0?'+':''}${susutPx.toFixed(1)} L)`;
 }
 
-// ================= RENDER SHIFT (READONLY) =================
+// ================= RENDER SHIFT =================
 function renderShifts(){
   const pagiBody=document.getElementById('tbodyPagi');
   const soreBody=document.getElementById('tbodySore');
   pagiBody.innerHTML=''; soreBody.innerHTML='';
   hourlyDataset.forEach(item=>{
     const row=document.createElement('tr');
-    // Jam
     const tdJam=document.createElement('td');
     tdJam.textContent=`${item.jam.toString().padStart(2,'0')}:00`;
     row.appendChild(tdJam);
-    // Pertalite Jual
+    
     const tdPJual=document.createElement('td');
     tdPJual.innerHTML=`<div class="hour-readonly">${item.jualPertalite.toFixed(1)}</div>`;
     row.appendChild(tdPJual);
-    // Pertalite Susut
+    
     const tdPSusut=document.createElement('td');
-    tdPSusut.innerHTML=`<div class="hour-readonly">${item.susutPertalite.toFixed(1)}</div>`;
+    const susutPVal = item.susutPertalite;
+    const susutPText = `${susutPVal>=0?'+':''}${susutPVal.toFixed(1)}`;
+    const susutPClass = susutPVal >= 0 ? 'hour-readonly positive' : 'hour-readonly negative';
+    tdPSusut.innerHTML = `<div class="${susutPClass}">${susutPText}</div>`;
     row.appendChild(tdPSusut);
-    // Pertamax Jual
+    
     const tdMJual=document.createElement('td');
     tdMJual.innerHTML=`<div class="hour-readonly">${item.jualPertamax.toFixed(1)}</div>`;
     row.appendChild(tdMJual);
-    // Pertamax Susut
+    
     const tdMSusut=document.createElement('td');
-    tdMSusut.innerHTML=`<div class="hour-readonly">${item.susutPertamax.toFixed(1)}</div>`;
+    const susutMVal = item.susutPertamax;
+    const susutMText = `${susutMVal>=0?'+':''}${susutMVal.toFixed(1)}`;
+    const susutMClass = susutMVal >= 0 ? 'hour-readonly positive' : 'hour-readonly negative';
+    tdMSusut.innerHTML = `<div class="${susutMClass}">${susutMText}</div>`;
     row.appendChild(tdMSusut);
     
     if(item.jam<14) pagiBody.appendChild(row);
@@ -419,6 +605,7 @@ function tambahJualOtomatis(produk){
     if(produk === 'pertalite') hourlyDataset[idx].jualPertalite += nilai;
     else hourlyDataset[idx].jualPertamax += nilai;
     renderShifts();
+    saveAllToLocalStorage();
     alert(`+${nilai.toFixed(2)} L ${produk.toUpperCase()} ditambahkan ke jam ${jam}:00`);
   }
 }
@@ -426,7 +613,7 @@ function tambahJualOtomatis(produk){
 function tambahSusutOtomatis(produk){
   const { selisihP, selisihM } = hitungTotalisator();
   let nilai = (produk === 'pertalite') ? selisihP : selisihM;
-  if(Math.abs(nilai) < 0.001){ alert(`Nilai susut untuk ${produk.toUpperCase()} = 0.`); return; }
+  if(Math.abs(nilai) < 0.001){ alert(`Nilai susut (flipped) untuk ${produk.toUpperCase()} = 0.`); return; }
   let jam;
   if(produk === 'pertalite') jam = parseInt(document.getElementById('sliderSusutPt').value);
   else jam = parseInt(document.getElementById('sliderSusutPx').value);
@@ -435,7 +622,8 @@ function tambahSusutOtomatis(produk){
     if(produk === 'pertalite') hourlyDataset[idx].susutPertalite += nilai;
     else hourlyDataset[idx].susutPertamax += nilai;
     renderShifts();
-    alert(`+${nilai.toFixed(2)} L ${produk.toUpperCase()} (${nilai>0?'Susut':'Kelebihan'}) ke jam ${jam}:00`);
+    saveAllToLocalStorage();
+    alert(`${nilai>=0?'+':''}${nilai.toFixed(2)} L (Flipped) ${produk.toUpperCase()} ditambahkan ke jam ${jam}:00 (${nilai>0?'kelebihan':'susut'})`);
   }
 }
 
@@ -446,23 +634,23 @@ function resetAllHourly(){
     i.jualPertamax=0; i.susutPertamax=0;
   });
   renderShifts();
+  saveAllToLocalStorage();
   alert('Semua data shift direset ke 0');
 }
 
-// ================= SAMAKAN SHIFT DENGAN NOZZLE (RATA) =================
 function syncShiftToNozzle(){
   const { totalP, totalM } = hitungTotalisator();
   const count = hourlyDataset.length;
   hourlyDataset.forEach(i=>{
     i.jualPertalite = totalP / count;
     i.jualPertamax = totalM / count;
-    // Susut tidak diubah
   });
   renderShifts();
+  saveAllToLocalStorage();
   alert(`Total penjualan shift disamakan dengan nozzle (rata). Nilai susut tidak berubah.`);
 }
 
-// ================= EXPORT PDF RINGKASAN =================
+// ================= EXPORT PDF =================
 function exportRingkasanPDF(){
   const { totalP, totalM, selisihP, selisihM } = hitungTotalisator();
   let pagiP=0, pagiM=0, soreP=0, soreM=0;
@@ -482,7 +670,7 @@ function exportRingkasanPDF(){
       th,td{ border:1px solid #cbd5e1; padding:10px; text-align:left; }
       th{ background:#f1f5f9; }
       .grand{ font-weight:800; }
-      .green{ color:#1da462; } .blue{ color:#0057b8; } .amber{ color:#d97706; }
+      .green{ color:#1da462; } .blue{ color:#0057b8; } .amber{ color:#d97706; } .red{ color:#e5363b; }
       .footer{ margin-top:30px; font-size:0.7rem; text-align:center; }
     </style>
     </head><body>
@@ -500,12 +688,12 @@ function exportRingkasanPDF(){
     <tr><td>SHIFT SORE (14-22)</td><td class="green">${soreP.toFixed(1)}</td><td class="blue">${soreM.toFixed(1)}</td><td>${(soreP+soreM).toFixed(1)}</td></tr>
     <tr style="background:#eef2ff;"><td><strong>TOTAL SHIFT</strong></td><td><strong>${(pagiP+soreP).toFixed(1)} L</strong></td><td><strong>${(pagiM+soreM).toFixed(1)} L</strong></td><td><strong>${(pagiP+soreP+pagiM+soreM).toFixed(1)} L</strong></td></tr>
     </table>
-    <h2>⚖️ Selisih Stok (Susut / Lebih)</h2>
+    <h2>⚖️ Selisih Stok (Flipped Logic)</h2>
     <table><tr><th>Produk</th><th>Nilai</th><th>Keterangan</th></tr>
-    <tr><td>Pertalite</td><td class="${selisihP>0?'amber':'green'}">${selisihP>0?'+':''}${selisihP.toFixed(2)} L</td><td>${selisihP>0?'⚠️ Penguapan/Susut':(selisihP<0?'✅ Kelebihan Stok':'✓ Seimbang')}</td></tr>
-    <tr><td>Pertamax</td><td class="${selisihM>0?'amber':'green'}">${selisihM>0?'+':''}${selisihM.toFixed(2)} L</td><td>${selisihM>0?'⚠️ Penguapan/Susut':(selisihM<0?'✅ Kelebihan Stok':'✓ Seimbang')}</td></tr>
+    <tr><td>Pertalite</td><td class="${selisihP>0?'green':'red'}">${selisihP>0?'+':''}${selisihP.toFixed(2)} L</td><td>${selisihP>0?'✅ Kelebihan Stok':'⚠️ Penguapan/Susut'}</td></tr>
+    <tr><td>Pertamax</td><td class="${selisihM>0?'green':'red'}">${selisihM>0?'+':''}${selisihM.toFixed(2)} L</td><td>${selisihM>0?'✅ Kelebihan Stok':'⚠️ Penguapan/Susut'}</td></tr>
     </table>
-    <div class="footer">Shift terisi otomatis dari tombol +Jual / +Susut per produk</div>
+    <div class="footer">Shift terisi otomatis | Data tersimpan di localStorage</div>
     </body></html>
   `;
   const win = window.open();
@@ -514,16 +702,14 @@ function exportRingkasanPDF(){
   win.print();
 }
 
-// ================= INIT SLIDER & EVENT =================
+// ================= INIT =================
 function initSliders(){
-  // Pertalite
   const sJualPt = document.getElementById('sliderJualPt');
   const vJualPt = document.getElementById('sliderJualPtVal');
   sJualPt.addEventListener('input',()=>{ vJualPt.textContent = `${sJualPt.value.toString().padStart(2,'0')}:00`; });
   const sSusutPt = document.getElementById('sliderSusutPt');
   const vSusutPt = document.getElementById('sliderSusutPtVal');
   sSusutPt.addEventListener('input',()=>{ vSusutPt.textContent = `${sSusutPt.value.toString().padStart(2,'0')}:00`; });
-  // Pertamax
   const sJualPx = document.getElementById('sliderJualPx');
   const vJualPx = document.getElementById('sliderJualPxVal');
   sJualPx.addEventListener('input',()=>{ vJualPx.textContent = `${sJualPx.value.toString().padStart(2,'0')}:00`; });
@@ -532,16 +718,19 @@ function initSliders(){
   sSusutPx.addEventListener('input',()=>{ vSusutPx.textContent = `${sSusutPx.value.toString().padStart(2,'0')}:00`; });
 }
 
-document.querySelectorAll('input[type=number]').forEach(inp=>{
+document.querySelectorAll('input[type="number"]').forEach(inp=>{
   inp.addEventListener('input', ()=>{
     hitungTotalisator();
     updateTombolLabel();
+    saveAllToLocalStorage();
   });
 });
 initSliders();
+loadFromLocalStorage();
 hitungTotalisator();
 renderShifts();
 updateTombolLabel();
+applyAllLocks();
 </script>
 </body>
 </html>
