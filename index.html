@@ -22,7 +22,7 @@
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
@@ -33,7 +33,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
       border: 1px solid #e2e8f0;
       overflow: hidden;
-      margin-bottom: 20px;
+      margin-bottom: 28px;
       transition: all 0.1s ease;
     }
 
@@ -376,7 +376,7 @@
     .btn-print { background: #334155; color: white; }
 
     /* responsive */
-    @media (max-width: 860px) {
+    @media (max-width: 760px) {
       .shift-double { grid-template-columns: 1fr; }
       .stok-grid { grid-template-columns: 1fr; }
     }
@@ -388,7 +388,7 @@
         padding: 0;
         margin: 0;
       }
-      .action-buttons, .hour-selector, .btn-group-shift, .hero-badge, .mini-btn, .btn-modern, .btn-print, .btn-reset, .btn-copy, .btn-lock, .btn-unlock, .btn-jam, .btn-susut, .compare-info .compare-chip:last-child, .hero .hero-badge {
+      .action-buttons, .hour-selector, .btn-group-shift, .hero-badge, .mini-btn, .btn-modern, .btn-print, .btn-reset, .btn-copy, .btn-lock, .btn-unlock, .btn-jam, .btn-susut, .compare-info .compare-chip:last-child, .simple-hero .btn-print {
         display: none !important;
       }
       .card, .shift-panel, .grand-card {
@@ -440,80 +440,77 @@
   <div class="simple-hero">
     <div>
       <h1><i class="fas fa-gas-pump"></i> SPBU 3417603 · TOTALISATOR PERJAM</h1>
-      <p style="font-size:0.7rem; color:#5b6e8c;">Perhitungan Real-Time Nozzle & Penguapan (Flipped Logic)</p>
+      <p style="font-size:0.7rem; color:#5b6e8c;">Perhitungan Real-Time Nozzle & Penguapan (Flipped Logic) | Satu Kolom</p>
     </div>
     <button class="btn-modern btn-print" onclick="window.print();" style="background:#1f2a44;"><i class="fas fa-file-pdf"></i> Export PDF (Cetak)</button>
   </div>
 
-  <!-- PERTALITE & PERTAMAX 2 KOLOM -->
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-    <!-- PERTALITE CARD -->
-    <div class="card">
-      <div class="card-header">
-        <div class="product-title pertalite-title"><i class="fas fa-leaf"></i> PERTALITE</div>
-        <span class="nozzle-badge"><i class="fas fa-tachometer-alt"></i> A1 · A2 · C</span>
-      </div>
-      <div class="table-wrapper">
-        <table class="data-table">
-          <thead><tr><th>Nozzle</th><th>Totalisator Awal</th><th>Totalisator Akhir</th><th>Penjualan (L)</th></tr></thead>
-          <tbody>
-            <tr><td><b>A1</b></td><td><input type="number" id="awalA1" placeholder="0"></td><td><input type="number" id="akhirA1" placeholder="0"></td><td class="jual-cell" id="jualA1">0</td></tr>
-            <tr><td><b>A2</b></td><td><input type="number" id="awalA2" placeholder="0"></td><td><input type="number" id="akhirA2" placeholder="0"></td><td class="jual-cell" id="jualA2">0</td></tr>
-            <tr><td><b>C</b></td><td><input type="number" id="awalC" placeholder="0"></td><td><input type="number" id="akhirC" placeholder="0"></td><td class="jual-cell" id="jualC">0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="stok-grid">
-        <div class="input-group"><label>Stok Awal Tangki (L)</label><input type="number" id="stokAwalPertalite" placeholder="0"></div>
-        <div class="input-group"><label>Total Terjual Nozzle (L)</label><input type="number" id="penjualanPertalite" readonly></div>
-        <div class="input-group"><label>Stok Akhir Tangki (L)</label><input type="number" id="stokAkhirPertalite" placeholder="0"></div>
-        <div class="input-group"><label>Selisih (Flipped ±)</label><input type="number" id="hasilPertalite" readonly></div>
-      </div>
-      <div class="penguapan-card state-balance" id="penguapanCardPertalite">
-        <div class="penguapan-inner">
-          <div><span id="penguapanLabelPertalite"><i class="fas fa-exchange-alt"></i> Selisih (Flip)</span><br><span class="penguapan-formula" id="penguapanFormulaPertalite" style="font-size:0.7rem;"></span></div>
-          <div style="text-align:right"><div class="penguapan-value" id="penguapanValuePertalite">0.00 L</div><span class="penguapan-status-badge" id="penguapanBadgePertalite">Balance</span></div>
-        </div>
-        <div class="penguapan-detail" id="penguapanDetailPertalite"><span>Stok Awal: <b id="detPAwal">0</b> L</span><span>Penjualan: <b id="detPJual">0</b> L</span><span>Stok Akhir: <b id="detPAkhir">0</b> L</span></div>
-      </div>
-      <div class="action-buttons"><button class="mini-btn btn-reset" onclick="resetPertalite()"><i class="fas fa-undo-alt"></i> Reset</button><button class="mini-btn btn-copy" onclick="copyPertalite()"><i class="fas fa-copy"></i> Copy</button><button class="mini-btn btn-lock" id="lockPertaliteBtn" onclick="toggleLockPertalite()"><i class="fas fa-lock"></i> Kunci Awal</button></div>
-      <div class="hour-selector"><span><i class="fas fa-chart-line"></i> + Penjualan ke jam:</span><select id="jamPilihPertalite"></select><button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertalite')"><i class="fas fa-plus"></i> Tambah Jual</button></div>
-      <div class="hour-selector"><span><i class="fas fa-tint"></i> + Susut (Flipped) ke jam:</span><select id="jamSusutPilihPertalite"></select><button class="mini-btn btn-susut" onclick="tambahSusutKeJam('pertalite')"><i class="fas fa-plus"></i> Tambah Susut</button></div>
+  <!-- PERTALITE CARD (full width, stack) -->
+  <div class="card">
+    <div class="card-header">
+      <div class="product-title pertalite-title"><i class="fas fa-leaf"></i> PERTALITE</div>
+      <span class="nozzle-badge"><i class="fas fa-tachometer-alt"></i> A1 · A2 · C</span>
     </div>
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead><tr><th>Nozzle</th><th>Totalisator Awal</th><th>Totalisator Akhir</th><th>Penjualan (L)</th></tr></thead>
+        <tbody>
+          <tr><td><b>A1</b></td><td><input type="number" id="awalA1" placeholder="0"></td><td><input type="number" id="akhirA1" placeholder="0"></td><td class="jual-cell" id="jualA1">0</td></tr>
+          <tr><td><b>A2</b></td><td><input type="number" id="awalA2" placeholder="0"></td><td><input type="number" id="akhirA2" placeholder="0"></td><td class="jual-cell" id="jualA2">0</td></tr>
+          <tr><td><b>C</b></td><td><input type="number" id="awalC" placeholder="0"></td><td><input type="number" id="akhirC" placeholder="0"></td><td class="jual-cell" id="jualC">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stok-grid">
+      <div class="input-group"><label>Stok Awal Tangki (L)</label><input type="number" id="stokAwalPertalite" placeholder="0"></div>
+      <div class="input-group"><label>Total Terjual Nozzle (L)</label><input type="number" id="penjualanPertalite" readonly></div>
+      <div class="input-group"><label>Stok Akhir Tangki (L)</label><input type="number" id="stokAkhirPertalite" placeholder="0"></div>
+      <div class="input-group"><label>Selisih (Flipped ±)</label><input type="number" id="hasilPertalite" readonly></div>
+    </div>
+    <div class="penguapan-card state-balance" id="penguapanCardPertalite">
+      <div class="penguapan-inner">
+        <div><span id="penguapanLabelPertalite"><i class="fas fa-exchange-alt"></i> Selisih (Flip)</span><br><span class="penguapan-formula" id="penguapanFormulaPertalite" style="font-size:0.7rem;"></span></div>
+        <div style="text-align:right"><div class="penguapan-value" id="penguapanValuePertalite">0.00 L</div><span class="penguapan-status-badge" id="penguapanBadgePertalite">Balance</span></div>
+      </div>
+      <div class="penguapan-detail" id="penguapanDetailPertalite"><span>Stok Awal: <b id="detPAwal">0</b> L</span><span>Penjualan: <b id="detPJual">0</b> L</span><span>Stok Akhir: <b id="detPAkhir">0</b> L</span></div>
+    </div>
+    <div class="action-buttons"><button class="mini-btn btn-reset" onclick="resetPertalite()"><i class="fas fa-undo-alt"></i> Reset</button><button class="mini-btn btn-copy" onclick="copyPertalite()"><i class="fas fa-copy"></i> Copy</button><button class="mini-btn btn-lock" id="lockPertaliteBtn" onclick="toggleLockPertalite()"><i class="fas fa-lock"></i> Kunci Awal</button></div>
+    <div class="hour-selector"><span><i class="fas fa-chart-line"></i> + Penjualan ke jam:</span><select id="jamPilihPertalite"></select><button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertalite')"><i class="fas fa-plus"></i> Tambah Jual</button></div>
+    <div class="hour-selector"><span><i class="fas fa-tint"></i> + Susut (Flipped) ke jam:</span><select id="jamSusutPilihPertalite"></select><button class="mini-btn btn-susut" onclick="tambahSusutKeJam('pertalite')"><i class="fas fa-plus"></i> Tambah Susut</button></div>
+  </div>
 
-    <!-- PERTAMAX CARD -->
-    <div class="card">
-      <div class="card-header">
-        <div class="product-title pertamax-title"><i class="fas fa-bolt"></i> PERTAMAX</div>
-        <span class="nozzle-badge"><i class="fas fa-tachometer-alt"></i> B1 · B2 · D</span>
-      </div>
-      <div class="table-wrapper">
-        <table class="data-table">
-          <thead><tr><th>Nozzle</th><th>Totalisator Awal</th><th>Totalisator Akhir</th><th>Penjualan (L)</th></tr></thead>
-          <tbody>
-            <tr><td><b>B1</b></td><td><input type="number" id="awalB1" placeholder="0"></td><td><input type="number" id="akhirB1" placeholder="0"></td><td class="jual-cell pertamax-jual-cell" id="jualB1">0</td></tr>
-            <tr><td><b>B2</b></td><td><input type="number" id="awalB2" placeholder="0"></td><td><input type="number" id="akhirB2" placeholder="0"></td><td class="jual-cell pertamax-jual-cell" id="jualB2">0</td></tr>
-            <tr><td><b>D</b></td><td><input type="number" id="awalD" placeholder="0"></td><td><input type="number" id="akhirD" placeholder="0"></td><td class="jual-cell pertamax-jual-cell" id="jualD">0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="stok-grid">
-        <div class="input-group"><label>Stok Awal Tangki (L)</label><input type="number" id="stokAwalPertamax" placeholder="0"></div>
-        <div class="input-group"><label>Total Terjual Nozzle (L)</label><input type="number" id="penjualanPertamax" readonly></div>
-        <div class="input-group"><label>Stok Akhir Tangki (L)</label><input type="number" id="stokAkhirPertamax" placeholder="0"></div>
-        <div class="input-group"><label>Selisih (Flipped ±)</label><input type="number" id="hasilPertamax" readonly></div>
-      </div>
-      <div class="penguapan-card state-balance" id="penguapanCardPertamax">
-        <div class="penguapan-inner">
-          <div><span id="penguapanLabelPertamax"><i class="fas fa-exchange-alt"></i> Selisih (Flip)</span><br><span class="penguapan-formula" id="penguapanFormulaPertamax" style="font-size:0.7rem;"></span></div>
-          <div style="text-align:right"><div class="penguapan-value" id="penguapanValuePertamax">0.00 L</div><span class="penguapan-status-badge" id="penguapanBadgePertamax">Balance</span></div>
-        </div>
-        <div class="penguapan-detail" id="penguapanDetailPertamax"><span>Stok Awal: <b id="detMAwal">0</b> L</span><span>Penjualan: <b id="detMJual">0</b> L</span><span>Stok Akhir: <b id="detMAkhir">0</b> L</span></div>
-      </div>
-      <div class="action-buttons"><button class="mini-btn btn-reset" onclick="resetPertamax()"><i class="fas fa-undo-alt"></i> Reset</button><button class="mini-btn btn-copy" onclick="copyPertamax()"><i class="fas fa-copy"></i> Copy</button><button class="mini-btn btn-lock" id="lockPertamaxBtn" onclick="toggleLockPertamax()"><i class="fas fa-lock"></i> Kunci Awal</button></div>
-      <div class="hour-selector"><span><i class="fas fa-chart-line"></i> + Penjualan ke jam:</span><select id="jamPilihPertamax"></select><button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertamax')"><i class="fas fa-plus"></i> Tambah Jual</button></div>
-      <div class="hour-selector"><span><i class="fas fa-tint"></i> + Susut (Flipped) ke jam:</span><select id="jamSusutPilihPertamax"></select><button class="mini-btn btn-susut" onclick="tambahSusutKeJam('pertamax')"><i class="fas fa-plus"></i> Tambah Susut</button></div>
+  <!-- PERTAMAX CARD (full width, stack) -->
+  <div class="card">
+    <div class="card-header">
+      <div class="product-title pertamax-title"><i class="fas fa-bolt"></i> PERTAMAX</div>
+      <span class="nozzle-badge"><i class="fas fa-tachometer-alt"></i> B1 · B2 · D</span>
     </div>
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead><tr><th>Nozzle</th><th>Totalisator Awal</th><th>Totalisator Akhir</th><th>Penjualan (L)</th></tr></thead>
+        <tbody>
+          <tr><td><b>B1</b></td><td><input type="number" id="awalB1" placeholder="0"></td><td><input type="number" id="akhirB1" placeholder="0"></td><td class="jual-cell pertamax-jual-cell" id="jualB1">0</td></tr>
+          <tr><td><b>B2</b></td><td><input type="number" id="awalB2" placeholder="0"></td><td><input type="number" id="akhirB2" placeholder="0"></td><td class="jual-cell pertamax-jual-cell" id="jualB2">0</td></tr>
+          <tr><td><b>D</b></td><td><input type="number" id="awalD" placeholder="0"></td><td><input type="number" id="akhirD" placeholder="0"></td><td class="jual-cell pertamax-jual-cell" id="jualD">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stok-grid">
+      <div class="input-group"><label>Stok Awal Tangki (L)</label><input type="number" id="stokAwalPertamax" placeholder="0"></div>
+      <div class="input-group"><label>Total Terjual Nozzle (L)</label><input type="number" id="penjualanPertamax" readonly></div>
+      <div class="input-group"><label>Stok Akhir Tangki (L)</label><input type="number" id="stokAkhirPertamax" placeholder="0"></div>
+      <div class="input-group"><label>Selisih (Flipped ±)</label><input type="number" id="hasilPertamax" readonly></div>
+    </div>
+    <div class="penguapan-card state-balance" id="penguapanCardPertamax">
+      <div class="penguapan-inner">
+        <div><span id="penguapanLabelPertamax"><i class="fas fa-exchange-alt"></i> Selisih (Flip)</span><br><span class="penguapan-formula" id="penguapanFormulaPertamax" style="font-size:0.7rem;"></span></div>
+        <div style="text-align:right"><div class="penguapan-value" id="penguapanValuePertamax">0.00 L</div><span class="penguapan-status-badge" id="penguapanBadgePertamax">Balance</span></div>
+      </div>
+      <div class="penguapan-detail" id="penguapanDetailPertamax"><span>Stok Awal: <b id="detMAwal">0</b> L</span><span>Penjualan: <b id="detMJual">0</b> L</span><span>Stok Akhir: <b id="detMAkhir">0</b> L</span></div>
+    </div>
+    <div class="action-buttons"><button class="mini-btn btn-reset" onclick="resetPertamax()"><i class="fas fa-undo-alt"></i> Reset</button><button class="mini-btn btn-copy" onclick="copyPertamax()"><i class="fas fa-copy"></i> Copy</button><button class="mini-btn btn-lock" id="lockPertamaxBtn" onclick="toggleLockPertamax()"><i class="fas fa-lock"></i> Kunci Awal</button></div>
+    <div class="hour-selector"><span><i class="fas fa-chart-line"></i> + Penjualan ke jam:</span><select id="jamPilihPertamax"></select><button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertamax')"><i class="fas fa-plus"></i> Tambah Jual</button></div>
+    <div class="hour-selector"><span><i class="fas fa-tint"></i> + Susut (Flipped) ke jam:</span><select id="jamSusutPilihPertamax"></select><button class="mini-btn btn-susut" onclick="tambahSusutKeJam('pertamax')"><i class="fas fa-plus"></i> Tambah Susut</button></div>
   </div>
 
   <!-- GRAND TOTAL -->
@@ -532,7 +529,7 @@
   let lockPertalite = false, lockPertamax = false;
   const nozzlePA = ['A1','A2','C'], nozzleMA = ['B1','B2','D'];
 
-  // Fungsi hitung flipped = -(stokAwal - totalJual - stokAkhir)
+  // Fungsi flipped = -(stokAwal - totalJual - stokAkhir)
   function getFlippedPenguapan(stokAwal, terjual, stokAkhir) { return -(stokAwal - terjual - stokAkhir); }
 
   function hitungSemua() {
