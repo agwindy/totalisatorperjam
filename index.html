@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>SPBU 3417603 | Totalisator Perjam</title>
+  <title>SPBU 3417603 | Totalisator Perjam (Manual)</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -31,51 +31,41 @@
       font-family: 'DM Sans', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      padding: 24px 20px;
+      padding: 24px 12px;
       min-height: 100vh;
     }
     .container { max-width: 1520px; margin: 0 auto; }
 
+    /* HERO */
     .hero {
       background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a5276 100%);
       border-radius: var(--radius);
-      padding: 1.6rem 2rem;
-      margin-bottom: 1.8rem;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 1rem;
-      position: relative;
-      overflow: hidden;
+      gap: 0.8rem;
     }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 80% 50%, rgba(37,99,235,0.25) 0%, transparent 60%);
-    }
-    .hero-left { position: relative; }
-    .hero h1 {
-      font-size: 1.7rem; font-weight: 800;
-      color: white; letter-spacing: -0.02em;
-    }
-    .hero p { color: rgba(255,255,255,0.6); font-size: 0.8rem; margin-top: 0.3rem; }
+    .hero h1 { font-size: 1.4rem; font-weight: 800; color: white; }
+    .hero p { color: rgba(255,255,255,0.6); font-size: 0.7rem; margin-top: 0.2rem; }
     .hero-badge {
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.2);
       color: white;
-      padding: 0.4rem 1rem;
+      padding: 0.4rem 0.8rem;
       border-radius: 60px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
-      position: relative;
     }
 
+    /* SINGLE COLUMN */
     .twin-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
     }
 
     .product-card {
@@ -86,234 +76,286 @@
       overflow: hidden;
     }
     .card-header {
-      padding: 1.1rem 1.4rem;
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .card-header h2 { font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+    .nozzle-badge {
+      padding: 0.3rem 0.8rem;
+      border-radius: 60px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      font-family: 'DM Mono', monospace;
     }
     .pertalite-hdr { background: linear-gradient(105deg, #f0fdf4, #dcfce7); }
     .pertamax-hdr { background: linear-gradient(105deg, #eff6ff, #dbeafe); }
-    .card-header h2 { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
     .pertalite-hdr h2 { color: #15803d; }
     .pertamax-hdr h2 { color: #1d4ed8; }
-    .nozzle-badge {
-      padding: 0.3rem 0.9rem; border-radius: 60px;
-      font-size: 0.65rem; font-weight: 700;
-      font-family: 'DM Mono', monospace;
-    }
     .pertalite-hdr .nozzle-badge { background: #bbf7d0; color: #15803d; }
     .pertamax-hdr .nozzle-badge { background: #bfdbfe; color: #1d4ed8; }
 
-    .table-wrap { padding: 1rem 1.2rem 0; overflow-x: auto; }
-    .data-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .table-wrap { padding: 0.8rem 1rem 0; overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
     .data-table th {
-      background: #f8fafd; padding: 0.7rem 0.4rem;
-      font-weight: 700; color: #374151; font-size: 0.72rem;
-      text-transform: uppercase; letter-spacing: 0.04em;
+      background: #f8fafd;
+      padding: 0.6rem 0.3rem;
+      font-weight: 700;
+      font-size: 0.7rem;
     }
-    .data-table td { padding: 0.6rem 0.3rem; border-bottom: 1px solid #f1f5f9; text-align: center; }
+    .data-table td { padding: 0.5rem 0.2rem; border-bottom: 1px solid #f1f5f9; text-align: center; }
     .jual-cell {
       background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-      font-weight: 800; color: #166534;
-      border-radius: 0.8rem; font-family: 'DM Mono', monospace;
+      font-weight: 800;
+      border-radius: 0.8rem;
+      font-family: 'DM Mono', monospace;
       font-size: 0.9rem;
     }
     .pertamax-jual {
       background: linear-gradient(135deg, #eff6ff, #dbeafe);
       color: #1e40af;
     }
+
     input[type=number] {
-      width: 100%; padding: 0.5rem 0.6rem;
-      border-radius: 0.8rem;
+      width: 100%;
+      padding: 0.8rem 0.5rem;
+      border-radius: 1rem;
       border: 1.5px solid #e2e8f0;
       font-family: 'DM Mono', monospace;
-      font-size: 0.85rem; font-weight: 500;
-      color: var(--text); background: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      background: white;
       transition: border-color 0.15s, box-shadow 0.15s;
+      min-height: 52px;
     }
     input[type=number]:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-    input[readonly] { background: #f8fafd; color: #475569; }
+    input[readonly] { background: #f8fafd; color: #475569; font-size: 1rem; }
 
-    .stok-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; padding: 0.8rem 1.2rem; }
+    .stok-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      padding: 0.8rem 1rem;
+    }
     .input-group { display: flex; flex-direction: column; gap: 0.3rem; }
-    .input-group label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; }
+    .input-group label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--muted); }
 
     .penguapan-card {
-      margin: 0 1.2rem 1rem;
+      margin: 0.5rem 1rem;
       border-radius: 1.2rem;
-      overflow: hidden;
       border: 2px solid transparent;
-      transition: all 0.3s ease;
     }
     .penguapan-inner {
-      padding: 0.9rem 1.1rem;
-      display: flex; align-items: center;
+      padding: 0.8rem;
+      display: flex;
+      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap; gap: 0.5rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .penguapan-left { display: flex; flex-direction: column; gap: 2px; }
-    .penguapan-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-    .penguapan-formula { font-size: 0.65rem; font-family: 'DM Mono', monospace; opacity: 0.7; margin-top: 2px; }
-    .penguapan-right { display: flex; align-items: center; gap: 0.7rem; }
-    .penguapan-value {
-      font-size: 1.8rem; font-weight: 800;
-      font-family: 'DM Mono', monospace;
-      letter-spacing: -0.02em;
-    }
-    .penguapan-status-badge {
-      padding: 0.25rem 0.7rem;
-      border-radius: 60px;
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
+    .penguapan-value { font-size: 1.6rem; font-weight: 800; font-family: 'DM Mono', monospace; }
+    .penguapan-status-badge { padding: 0.25rem 0.7rem; border-radius: 60px; font-size: 0.6rem; font-weight: 700; }
 
     .state-balance { border-color: #a7f3d0; background: linear-gradient(105deg, #f0fdf4, #ecfdf5); }
-    .state-balance .penguapan-label { color: #065f46; }
-    .state-balance .penguapan-value { color: #059669; }
-    .state-balance .penguapan-status-badge { background: #a7f3d0; color: #065f46; }
-
     .state-penguapan { border-color: #fcd34d; background: linear-gradient(105deg, #fffbeb, #fef9e6); }
-    .state-penguapan .penguapan-label { color: #92400e; }
-    .state-penguapan .penguapan-value { color: #d97706; }
-    .state-penguapan .penguapan-status-badge { background: #fcd34d; color: #78350f; }
-
     .state-kekurangan { border-color: #fca5a5; background: linear-gradient(105deg, #fef2f2, #fff5f5); }
-    .state-kekurangan .penguapan-label { color: #7f1d1d; }
-    .state-kekurangan .penguapan-value { color: #dc2626; }
-    .state-kekurangan .penguapan-status-badge { background: #fca5a5; color: #7f1d1d; }
-
-    .penguapan-detail {
-      border-top: 1px solid rgba(0,0,0,0.07);
-      padding: 0.5rem 1.1rem;
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      font-size: 0.65rem; font-family: 'DM Mono', monospace;
-      opacity: 0.75;
-    }
-    .penguapan-detail span { display: flex; align-items: center; gap: 4px; }
 
     .action-buttons {
-      display: flex; gap: 0.6rem;
-      padding: 0 1.2rem 0.8rem; flex-wrap: wrap;
+      display: flex;
+      gap: 0.6rem;
+      padding: 0 1rem 0.8rem;
+      flex-wrap: wrap;
     }
     .mini-btn {
-      border: none; padding: 0.38rem 0.9rem;
-      border-radius: 2rem; font-weight: 600;
-      font-size: 0.68rem; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 5px;
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-family: 'DM Sans', sans-serif;
       transition: opacity 0.15s;
+      min-height: 48px;
     }
-    .mini-btn:hover { opacity: 0.82; }
     .btn-reset { background: #fee2e2; color: #b91c1c; }
     .btn-copy { background: #e0f2fe; color: #0369a1; }
     .btn-lock { background: #f1f5f9; color: #334155; }
     .btn-unlock { background: #1e40af; color: white; }
-    .btn-jam { background: #0f3460; color: white; }
 
     .hour-selector {
-      display: flex; gap: 0.7rem; align-items: center;
-      padding: 0.8rem 1.2rem 1.2rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      padding: 0.8rem 1rem;
       flex-wrap: wrap;
       border-top: 1px solid var(--border);
     }
-    .hour-selector span { font-size: 0.72rem; font-weight: 600; color: var(--muted); }
+    .hour-selector span { font-size: 0.75rem; font-weight: 600; color: var(--muted); }
     .hour-selector select {
-      padding: 0.45rem 0.8rem; border-radius: 0.8rem;
-      border: 1.5px solid var(--border); background: white;
-      font-size: 0.8rem; font-family: 'DM Mono', monospace;
-      font-weight: 500; color: var(--text);
+      padding: 0.6rem 0.8rem;
+      border-radius: 1rem;
+      border: 1.5px solid var(--border);
+      background: white;
+      font-size: 0.9rem;
+      font-family: 'DM Mono', monospace;
+      min-height: 48px;
+    }
+    .btn-jam {
+      background: #0f3460;
+      color: white;
+      padding: 0.7rem 1rem;
+      min-height: 48px;
     }
 
     .grand-card {
       background: linear-gradient(135deg, #0f3460, #16213e);
       border-radius: var(--radius);
-      padding: 1.2rem 2rem;
-      margin-bottom: 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-      position: relative; overflow: hidden;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
-    .grand-card::before {
-      content: '';
-      position: absolute; right: -40px; top: -40px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(37,99,235,0.3), transparent 70%);
-    }
-    .grand-label { color: rgba(255,255,255,0.6); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
-    .grand-number { font-size: 2.8rem; font-weight: 800; color: white; font-family: 'DM Mono', monospace; letter-spacing: -0.03em; }
-    .grand-sub { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    .grand-number { font-size: 2rem; font-weight: 800; color: white; font-family: 'DM Mono', monospace; }
 
     .shift-double {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1.5rem; margin-bottom: 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
     }
-    .shift-panel { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border); }
+    .shift-panel {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
     .shift-title {
-      padding: 1rem 1.4rem; font-weight: 800;
-      font-size: 1rem; display: flex; align-items: center; gap: 10px;
+      padding: 0.8rem 1rem;
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       border-bottom: 1px solid var(--border);
     }
     .pagi-title { background: #fffbeb; color: #92400e; }
     .sore-title { background: #eff6ff; color: #1e3a8a; }
-    .shift-title .time-badge {
+    .time-badge {
       font-size: 0.65rem; font-weight: 600; font-family: 'DM Mono', monospace;
       padding: 0.2rem 0.6rem; border-radius: 60px; margin-left: auto;
     }
     .pagi-title .time-badge { background: #fef3c7; color: #92400e; }
     .sore-title .time-badge { background: #dbeafe; color: #1e3a8a; }
-    .hour-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    .hour-table th { background: #fafcff; padding: 0.7rem 0.3rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: #374151; }
-    .hour-table td { padding: 0.55rem 0.3rem; border-bottom: 1px solid #f1f5f9; text-align: center; }
+
+    .hour-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+      min-width: 650px;
+    }
+    .hour-table th {
+      background: #fafcff;
+      padding: 0.7rem 0.3rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+    .hour-table td {
+      padding: 0.5rem 0.2rem;
+      border-bottom: 1px solid #f1f5f9;
+      text-align: center;
+    }
     .hour-input {
-      width: 88px; text-align: center; padding: 0.4rem; border-radius: 0.7rem;
-      font-size: 0.78rem; background: #f8fafd; color: #1e293b;
-      border: 1px solid #e2e8f0; cursor: default;
+      width: 100%;
+      min-width: 85px;
+      text-align: center;
+      padding: 0.5rem 0.2rem;
+      border-radius: 0.7rem;
+      font-size: 0.8rem;
+      background: #f8fafd;
+      border: 1px solid #e2e8f0;
+      cursor: default;
+      font-family: 'DM Mono', monospace;
     }
     .shift-summary {
-      background: #f8fafd; margin: 0.8rem 1rem;
-      padding: 0.7rem 1rem; border-radius: 1.2rem;
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+      background: #f8fafd;
+      margin: 0.8rem;
+      padding: 0.6rem;
+      border-radius: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .shift-stat { text-align: center; }
-    .shift-stat .val { font-size: 1.2rem; font-weight: 800; font-family: 'DM Mono', monospace; }
-    .shift-stat .lbl { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .shift-stat .val { font-size: 1rem; font-weight: 800; font-family: 'DM Mono', monospace; }
     .compare-info {
-      background: white; border-radius: var(--radius);
-      padding: 0.8rem 1.4rem; margin-bottom: 1.2rem;
+      background: white;
+      border-radius: var(--radius);
+      padding: 0.6rem 1rem;
+      margin-bottom: 1rem;
       border: 1px solid var(--border);
-      font-size: 0.78rem; display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
-    .compare-info strong { font-weight: 700; }
     .compare-chip {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 0.25rem 0.8rem; border-radius: 60px;
-      font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 60px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
     }
     .chip-ok { background: #dcfce7; color: #15803d; }
     .chip-diff { background: #fef9c3; color: #92400e; }
+
     .btn-group-shift {
-      display: flex; gap: 0.8rem; justify-content: flex-end;
-      padding-bottom: 1.5rem; flex-wrap: wrap;
+      display: flex;
+      gap: 0.8rem;
+      justify-content: flex-end;
+      padding-bottom: 1rem;
+      flex-wrap: wrap;
     }
     .btn-modern {
-      border: none; background: #f1f5f9; padding: 0.5rem 1.2rem;
-      border-radius: 2rem; font-weight: 600; font-size: 0.75rem;
-      cursor: pointer; font-family: 'DM Sans', sans-serif;
-      display: inline-flex; align-items: center; gap: 6px;
-      transition: opacity 0.15s;
+      border: none;
+      background: #f1f5f9;
+      padding: 0.7rem 1rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 48px;
     }
-    .btn-modern:hover { opacity: 0.8; }
     .btn-primary { background: #1e40af; color: white; }
 
-    @media (max-width: 860px) {
-      .shift-double, .twin-grid { grid-template-columns: 1fr; }
-      body { padding: 12px; }
-      .grand-number { font-size: 2rem; }
+    @media (max-width: 480px) {
+      body { padding: 12px 8px; }
+      .hero h1 { font-size: 1.2rem; }
+      .grand-number { font-size: 1.5rem; }
+      .hour-input { min-width: 70px; font-size: 0.7rem; }
     }
-    @media print { button, .action-buttons, .hour-selector, .btn-group-shift, .hero-badge { display: none; } }
+    @media print {
+      button, .action-buttons, .hour-selector, .btn-group-shift, .hero-badge { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -321,17 +363,17 @@
 
   <div class="hero">
     <div class="hero-left">
-      <h1><i class="fas fa-gas-pump"></i> SPBU 3417603 &middot; TOTALISATOR PERJAM</h1>
-      <p>Aplikasi Perhitungan Totalisator Per-jam Realtime</p>
+      <h1><i class="fas fa-gas-pump"></i> SPBU 3417603 · TOTALISATOR PERJAM</h1>
+      <p>Input per jam manual | Totalisator baru tidak mengubah data jam yang sudah ada</p>
     </div>
-    <div class="hero-badge"><i class="fas fa-hand-pointer"></i> Made With Love By Ag Windy</div>
+    <div class="hero-badge"><i class="fas fa-hand-pointer"></i> Manual Entry</div>
   </div>
 
   <div class="twin-grid">
     <!-- PERTALITE -->
     <div class="product-card">
       <div class="card-header pertalite-hdr">
-        <h2><i class="fas fa-gas-pump" style="font-size:1.1rem"></i> PERTALITE</h2>
+        <h2><i class="fas fa-gas-pump"></i> PERTALITE</h2>
         <span class="nozzle-badge">A1 · A2 · C</span>
       </div>
       <div class="table-wrap">
@@ -348,9 +390,8 @@
         <div class="input-group"><label>Stok Awal Tangki (L)</label><input type="number" id="stokAwalPertalite" placeholder="0"></div>
         <div class="input-group"><label>Total Terjual Nozzle (L)</label><input type="number" id="penjualanPertalite" readonly placeholder="0"></div>
         <div class="input-group"><label>Stok Akhir Tangki (L)</label><input type="number" id="stokAkhirPertalite" placeholder="0"></div>
-        <div class="input-group"><label>Sisa Hitung (Awal − Jual)</label><input type="number" id="hasilPertalite" readonly placeholder="0"></div>
+        <div class="input-group"><label>Selisih (Awal−Jual−Akhir)</label><input type="number" id="hasilPertalite" readonly placeholder="0"></div>
       </div>
-
       <div class="penguapan-card state-balance" id="penguapanCardPertalite">
         <div class="penguapan-inner">
           <div class="penguapan-left">
@@ -370,14 +411,13 @@
           <span><i class="fas fa-warehouse"></i> Stok Akhir: <b id="detPAkhir">0</b> L</span>
         </div>
       </div>
-
       <div class="action-buttons">
         <button class="mini-btn btn-reset" onclick="resetPertalite()"><i class="fas fa-undo-alt"></i> Reset</button>
         <button class="mini-btn btn-copy" onclick="copyPertalite()"><i class="fas fa-copy"></i> Copy</button>
         <button class="mini-btn btn-lock" id="lockPertaliteBtn" onclick="toggleLockPertalite()"><i class="fas fa-lock"></i> Kunci Awal</button>
       </div>
       <div class="hour-selector">
-        <span><i class="fas fa-clock"></i> Input ke jam:</span>
+        <span><i class="fas fa-clock"></i> Tambah penjualan ke jam:</span>
         <select id="jamPilihPertalite"></select>
         <button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertalite')"><i class="fas fa-plus-circle"></i> Tambah ke Jam</button>
       </div>
@@ -386,7 +426,7 @@
     <!-- PERTAMAX -->
     <div class="product-card">
       <div class="card-header pertamax-hdr">
-        <h2><i class="fas fa-gas-pump" style="font-size:1.1rem"></i> PERTAMAX</h2>
+        <h2><i class="fas fa-gas-pump"></i> PERTAMAX</h2>
         <span class="nozzle-badge">B1 · B2 · D</span>
       </div>
       <div class="table-wrap">
@@ -403,9 +443,8 @@
         <div class="input-group"><label>Stok Awal Tangki (L)</label><input type="number" id="stokAwalPertamax" placeholder="0"></div>
         <div class="input-group"><label>Total Terjual Nozzle (L)</label><input type="number" id="penjualanPertamax" readonly placeholder="0"></div>
         <div class="input-group"><label>Stok Akhir Tangki (L)</label><input type="number" id="stokAkhirPertamax" placeholder="0"></div>
-        <div class="input-group"><label>Sisa Hitung (Awal − Jual)</label><input type="number" id="hasilPertamax" readonly placeholder="0"></div>
+        <div class="input-group"><label>Selisih (Awal−Jual−Akhir)</label><input type="number" id="hasilPertamax" readonly placeholder="0"></div>
       </div>
-
       <div class="penguapan-card state-balance" id="penguapanCardPertamax">
         <div class="penguapan-inner">
           <div class="penguapan-left">
@@ -425,31 +464,31 @@
           <span><i class="fas fa-warehouse"></i> Stok Akhir: <b id="detMAkhir">0</b> L</span>
         </div>
       </div>
-
       <div class="action-buttons">
         <button class="mini-btn btn-reset" onclick="resetPertamax()"><i class="fas fa-undo-alt"></i> Reset</button>
         <button class="mini-btn btn-copy" onclick="copyPertamax()"><i class="fas fa-copy"></i> Copy</button>
         <button class="mini-btn btn-lock" id="lockPertamaxBtn" onclick="toggleLockPertamax()"><i class="fas fa-lock"></i> Kunci Awal</button>
       </div>
       <div class="hour-selector">
-        <span><i class="fas fa-clock"></i> Input ke jam:</span>
+        <span><i class="fas fa-clock"></i> Tambah penjualan ke jam:</span>
         <select id="jamPilihPertamax"></select>
         <button class="mini-btn btn-jam" onclick="tambahPenjualanKeJam('pertamax')"><i class="fas fa-plus-circle"></i> Tambah ke Jam</button>
       </div>
     </div>
   </div>
 
+  <!-- GRAND TOTAL -->
   <div class="grand-card">
     <div>
       <div class="grand-label"><i class="fas fa-chart-bar"></i> Grand Total Penjualan Nozzle</div>
       <div class="grand-number" id="grandTotal">0 L</div>
       <div class="grand-sub">Pertalite + Pertamax</div>
     </div>
-    <div style="text-align:right; position:relative;">
+    <div style="text-align:right;">
       <div class="grand-label">Pertalite</div>
-      <div style="font-size:1.3rem;font-weight:800;color:#86efac;font-family:'DM Mono',monospace;" id="grandPertalite">0 L</div>
-      <div class="grand-label" style="margin-top:0.5rem;">Pertamax</div>
-      <div style="font-size:1.3rem;font-weight:800;color:#93c5fd;font-family:'DM Mono',monospace;" id="grandPertamax">0 L</div>
+      <div style="font-size:1.2rem;font-weight:800;color:#86efac;font-family:'DM Mono',monospace;" id="grandPertalite">0 L</div>
+      <div class="grand-label" style="margin-top:0.3rem;">Pertamax</div>
+      <div style="font-size:1.2rem;font-weight:800;color:#93c5fd;font-family:'DM Mono',monospace;" id="grandPertamax">0 L</div>
     </div>
   </div>
 
@@ -465,21 +504,17 @@
       <div class="shift-title pagi-title"><i class="fas fa-sun"></i> SHIFT PAGI <span class="time-badge">05:00 – 13:59</span></div>
       <div style="overflow-x:auto;padding:0 0.8rem">
         <table class="hour-table">
-          <thead>
-            <tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr>
-          </thead>
+          <thead><tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr></thead>
           <tbody id="tbodyPagi"></tbody>
         </table>
       </div>
       <div class="shift-summary" id="summaryPagi"></div>
     </div>
     <div class="shift-panel">
-      <div class="shift-title sore-title"><i class="fas fa-moon"></i> SHIFT SORE <span style="font-size:0.7rem;">14:00 – 22:00</span></div>
+      <div class="shift-title sore-title"><i class="fas fa-moon"></i> SHIFT SORE <span class="time-badge">14:00 – 22:00</span></div>
       <div style="overflow-x:auto;padding:0 0.8rem">
         <table class="hour-table">
-          <thead>
-            <tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr>
-          </thead>
+          <thead><tr><th>Jam</th><th>Pertalite (Jual)</th><th>Pertalite (Susut)</th><th>Pertamax (Jual)</th><th>Pertamax (Susut)</th></tr></thead>
           <tbody id="tbodySore"></tbody>
         </table>
       </div>
@@ -487,15 +522,14 @@
     </div>
   </div>
   <div class="btn-group-shift">
-    <button class="btn-modern" onclick="resetAllHourly()"><i class="fas fa-trash-alt"></i> Reset Semua Jam (Hapus Manual)</button>
-    <button class="btn-modern btn-primary" onclick="syncShiftToNozzle()"><i class="fas fa-balance-scale"></i> Samakan Total Shift dengan Nozzle (Rata Ulang)</button>
+    <button class="btn-modern" onclick="resetAllHourly()"><i class="fas fa-trash-alt"></i> Reset Semua Jam</button>
+    <button class="btn-modern btn-primary" onclick="syncShiftToNozzle()"><i class="fas fa-balance-scale"></i> Samakan Total Shift dengan Nozzle</button>
   </div>
 
 </div>
 <script>
   // ================= DATA GLOBAL =================
-  let hourlyDataset = []; // { jam, jualP, susutP, jualM, susutM, manualP, manualM } -> manual flag untuk jual (karena susut proporsional)
-  let manualFlag = { pertalite: new Array(18).fill(false), pertamax: new Array(18).fill(false) };
+  let hourlyDataset = []; // { jam, jualPertalite, susutPertalite, jualPertamax, susutPertamax }
   for (let i = 5; i <= 22; i++) {
     hourlyDataset.push({ 
       jam: i, 
@@ -507,7 +541,46 @@
   let lockPertalite = false, lockPertamax = false;
   const nozzlePA = ['A1','A2','C'], nozzleMA = ['B1','B2','D'];
 
-  // ===== HITUNG PENGUAPAN OTOMATIS =====
+  // ===== HITUNG NOZZLE & PENGUAPAN (tidak mengubah jam) =====
+  function hitungNozzle() {
+    let totalP = 0, totalM = 0;
+    nozzlePA.forEach(n => {
+      const awal = parseFloat(document.getElementById('awal'+n).value) || 0;
+      const akhir = parseFloat(document.getElementById('akhir'+n).value) || 0;
+      const jual = akhir - awal;
+      document.getElementById('jual'+n).textContent = jual.toLocaleString('id-ID');
+      totalP += jual;
+    });
+    nozzleMA.forEach(n => {
+      const awal = parseFloat(document.getElementById('awal'+n).value) || 0;
+      const akhir = parseFloat(document.getElementById('akhir'+n).value) || 0;
+      const jual = akhir - awal;
+      document.getElementById('jual'+n).textContent = jual.toLocaleString('id-ID');
+      totalM += jual;
+    });
+    document.getElementById('penjualanPertalite').value = totalP;
+    document.getElementById('penjualanPertamax').value = totalM;
+    const sP = (parseFloat(document.getElementById('stokAwalPertalite').value)||0) - totalP;
+    const sM = (parseFloat(document.getElementById('stokAwalPertamax').value)||0) - totalM;
+    const stokAkhirP = parseFloat(document.getElementById('stokAkhirPertalite').value)||0;
+    const stokAkhirM = parseFloat(document.getElementById('stokAkhirPertamax').value)||0;
+    const hasilP = sP - stokAkhirP;
+    const hasilM = sM - stokAkhirM;
+    document.getElementById('hasilPertalite').value = hasilP.toFixed(2);
+    document.getElementById('hasilPertamax').value = hasilM.toFixed(2);
+    
+    document.getElementById('grandTotal').textContent = (totalP + totalM).toLocaleString('id-ID') + ' L';
+    document.getElementById('grandPertalite').textContent = totalP.toLocaleString('id-ID') + ' L';
+    document.getElementById('grandPertamax').textContent = totalM.toLocaleString('id-ID') + ' L';
+    
+    // Hitung penguapan untuk tampilan card
+    hitungPenguapanOtomatis('pertalite');
+    hitungPenguapanOtomatis('pertamax');
+    
+    // Update perbandingan nozzle vs jam (tanpa mengubah nilai jam)
+    updateShiftSummaries();
+  }
+
   function hitungPenguapanOtomatis(produk) {
     const isP = produk === 'pertalite';
     const stokAwal = parseFloat(document.getElementById(isP ? 'stokAwalPertalite' : 'stokAwalPertamax').value) || 0;
@@ -548,157 +621,25 @@
       badgeEl.textContent = '✗ Stok Kurang / Selisih';
       labelEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Kekurangan Stok';
     }
-    return penguapan;
   }
 
-  // ===== DISTRIBUSI OTOMATIS (hanya untuk jam yang belum manual) =====
-  function distributeToHours() {
-    const totalJualP = parseFloat(document.getElementById('penjualanPertalite').value) || 0;
-    const totalJualM = parseFloat(document.getElementById('penjualanPertamax').value) || 0;
-    const totalSusutP = parseFloat(document.getElementById('hasilPertalite').value) || 0;
-    const totalSusutM = parseFloat(document.getElementById('hasilPertamax').value) || 0;
-
-    // Hitung total penjualan yang sudah manual (terkunci)
-    let manualJualP = 0, manualJualM = 0;
-    let manualCountP = 0, manualCountM = 0;
-    for (let i = 0; i < hourlyDataset.length; i++) {
-      if (manualFlag.pertalite[i]) {
-        manualJualP += hourlyDataset[i].jualPertalite;
-        manualCountP++;
-      }
-      if (manualFlag.pertamax[i]) {
-        manualJualM += hourlyDataset[i].jualPertamax;
-        manualCountM++;
-      }
-    }
-
-    // Sisa penjualan yang harus didistribusikan ke jam non-manual
-    const sisaJualP = totalJualP - manualJualP;
-    const sisaJualM = totalJualM - manualJualM;
-    const nonManualCountP = hourlyDataset.length - manualCountP;
-    const nonManualCountM = hourlyDataset.length - manualCountM;
-
-    // Sisa susut (penguapan) didistribusikan proporsional terhadap penjualan di jam non-manual nanti
-    // Karena susut per jam idealnya proporsional dengan penjualan di jam tersebut, kita hitung dulu sisa susut.
-    let manualSusutP = 0, manualSusutM = 0;
-    for (let i = 0; i < hourlyDataset.length; i++) {
-      if (manualFlag.pertalite[i]) manualSusutP += hourlyDataset[i].susutPertalite;
-      if (manualFlag.pertamax[i]) manualSusutM += hourlyDataset[i].susutPertamax;
-    }
-    const sisaSusutP = totalSusutP - manualSusutP;
-    const sisaSusutM = totalSusutM - manualSusutM;
-
-    // Isi untuk jam non-manual
-    for (let i = 0; i < hourlyDataset.length; i++) {
-      if (!manualFlag.pertalite[i]) {
-        if (nonManualCountP > 0) {
-          hourlyDataset[i].jualPertalite = parseFloat((sisaJualP / nonManualCountP).toFixed(2));
-        } else {
-          hourlyDataset[i].jualPertalite = 0;
-        }
-      }
-      if (!manualFlag.pertamax[i]) {
-        if (nonManualCountM > 0) {
-          hourlyDataset[i].jualPertamax = parseFloat((sisaJualM / nonManualCountM).toFixed(2));
-        } else {
-          hourlyDataset[i].jualPertamax = 0;
-        }
-      }
-    }
-
-    // Setelah penjualan non-manual terisi, hitung proporsi susut berdasarkan penjualan di jam non-manual
-    // Hitung total penjualan non-manual untuk proporsi
-    let nonManualJualP = 0, nonManualJualM = 0;
-    for (let i = 0; i < hourlyDataset.length; i++) {
-      if (!manualFlag.pertalite[i]) nonManualJualP += hourlyDataset[i].jualPertalite;
-      if (!manualFlag.pertamax[i]) nonManualJualM += hourlyDataset[i].jualPertamax;
-    }
-
-    for (let i = 0; i < hourlyDataset.length; i++) {
-      if (!manualFlag.pertalite[i]) {
-        if (nonManualJualP !== 0 && sisaSusutP !== 0) {
-          const prop = hourlyDataset[i].jualPertalite / nonManualJualP;
-          hourlyDataset[i].susutPertalite = parseFloat((sisaSusutP * prop).toFixed(2));
-        } else {
-          hourlyDataset[i].susutPertalite = parseFloat((sisaSusutP / nonManualCountP).toFixed(2)) || 0;
-        }
-      }
-      if (!manualFlag.pertamax[i]) {
-        if (nonManualJualM !== 0 && sisaSusutM !== 0) {
-          const prop = hourlyDataset[i].jualPertamax / nonManualJualM;
-          hourlyDataset[i].susutPertamax = parseFloat((sisaSusutM * prop).toFixed(2));
-        } else {
-          hourlyDataset[i].susutPertamax = parseFloat((sisaSusutM / nonManualCountM).toFixed(2)) || 0;
-        }
-      }
-    }
-
-    renderSeparateShifts();
-  }
-
-  // ===== HITUNG NOZZLE =====
-  function hitungNozzle() {
-    let totalP = 0, totalM = 0;
-    nozzlePA.forEach(n => {
-      const awal = parseFloat(document.getElementById('awal'+n).value) || 0;
-      const akhir = parseFloat(document.getElementById('akhir'+n).value) || 0;
-      const jual = akhir - awal;
-      document.getElementById('jual'+n).textContent = jual.toLocaleString('id-ID');
-      totalP += jual;
-    });
-    nozzleMA.forEach(n => {
-      const awal = parseFloat(document.getElementById('awal'+n).value) || 0;
-      const akhir = parseFloat(document.getElementById('akhir'+n).value) || 0;
-      const jual = akhir - awal;
-      document.getElementById('jual'+n).textContent = jual.toLocaleString('id-ID');
-      totalM += jual;
-    });
-    document.getElementById('penjualanPertalite').value = totalP;
-    document.getElementById('penjualanPertamax').value = totalM;
-    const sP = (parseFloat(document.getElementById('stokAwalPertalite').value)||0) - totalP;
-    const sM = (parseFloat(document.getElementById('stokAwalPertamax').value)||0) - totalM;
-    document.getElementById('hasilPertalite').value = sP.toFixed(2);
-    document.getElementById('hasilPertamax').value = sM.toFixed(2);
-    document.getElementById('grandTotal').textContent = (totalP + totalM).toLocaleString('id-ID') + ' L';
-    document.getElementById('grandPertalite').textContent = totalP.toLocaleString('id-ID') + ' L';
-    document.getElementById('grandPertamax').textContent = totalM.toLocaleString('id-ID') + ' L';
-    hitungPenguapanOtomatis('pertalite');
-    hitungPenguapanOtomatis('pertamax');
-    distributeToHours(); // distribusi ulang dengan mempertahankan manual
-  }
-
-  // ===== RENDER SHIFT (READONLY) =====
+  // ===== RENDER SHIFT (readonly) =====
   function renderSeparateShifts() {
     const tbPagi = document.getElementById('tbodyPagi');
     const tbSore = document.getElementById('tbodySore');
     tbPagi.innerHTML = ''; tbSore.innerHTML = '';
 
-    hourlyDataset.forEach((item, idx) => {
+    hourlyDataset.forEach((item) => {
       const row = document.createElement('tr');
       row.appendChild(createCell(`${item.jam.toString().padStart(2,'0')}:00`));
       
-      // Pertalite Jual (readonly)
-      const pJual = document.createElement('input');
-      pJual.type = 'text'; pJual.value = item.jualPertalite.toFixed(2);
-      pJual.classList.add('hour-input'); pJual.readOnly = true;
+      const pJual = document.createElement('input'); pJual.type = 'text'; pJual.value = item.jualPertalite.toFixed(2); pJual.classList.add('hour-input'); pJual.readOnly = true;
       row.appendChild(createCellWithInput(pJual));
-      
-      // Pertalite Susut (readonly)
-      const pSusut = document.createElement('input');
-      pSusut.type = 'text'; pSusut.value = item.susutPertalite.toFixed(2);
-      pSusut.classList.add('hour-input'); pSusut.readOnly = true;
+      const pSusut = document.createElement('input'); pSusut.type = 'text'; pSusut.value = item.susutPertalite.toFixed(2); pSusut.classList.add('hour-input'); pSusut.readOnly = true;
       row.appendChild(createCellWithInput(pSusut));
-      
-      // Pertamax Jual (readonly)
-      const mJual = document.createElement('input');
-      mJual.type = 'text'; mJual.value = item.jualPertamax.toFixed(2);
-      mJual.classList.add('hour-input'); mJual.readOnly = true;
+      const mJual = document.createElement('input'); mJual.type = 'text'; mJual.value = item.jualPertamax.toFixed(2); mJual.classList.add('hour-input'); mJual.readOnly = true;
       row.appendChild(createCellWithInput(mJual));
-      
-      // Pertamax Susut (readonly)
-      const mSusut = document.createElement('input');
-      mSusut.type = 'text'; mSusut.value = item.susutPertamax.toFixed(2);
-      mSusut.classList.add('hour-input'); mSusut.readOnly = true;
+      const mSusut = document.createElement('input'); mSusut.type = 'text'; mSusut.value = item.susutPertamax.toFixed(2); mSusut.classList.add('hour-input'); mSusut.readOnly = true;
       row.appendChild(createCellWithInput(mSusut));
       
       if (item.jam < 14) tbPagi.appendChild(row);
@@ -745,7 +686,7 @@
     cpM.textContent = `Pertamax Nozzle ${nM.toFixed(1)} / Jam ${totJM.toFixed(1)} (Δ${selM.toFixed(1)})`;
   }
 
-  // ===== TAMBAH PENJUALAN KE JAM (MANUAL, hanya jam itu saja) =====
+  // ===== TAMBAH PENJUALAN KE JAM (MANUAL) =====
   function tambahPenjualanKeJam(produk) {
     const isP = produk === 'pertalite';
     const total = parseFloat(document.getElementById(isP ? 'penjualanPertalite' : 'penjualanPertamax').value)||0;
@@ -755,36 +696,47 @@
     if (idx !== -1) {
       if (isP) {
         hourlyDataset[idx].jualPertalite += total;
-        manualFlag.pertalite[idx] = true; // tandai sebagai manual
+        // Susut tidak diubah manual, tetap seperti sebelumnya
       } else {
         hourlyDataset[idx].jualPertamax += total;
-        manualFlag.pertamax[idx] = true;
       }
-      // Setelah manual, kita harus mendistribusikan ulang sisa ke jam non-manual
-      distributeToHours();
-      alert(`Berhasil menambahkan ${total.toFixed(2)} L ${produk.toUpperCase()} ke jam ${jam}:00 (jam ini dikunci manual).`);
+      renderSeparateShifts();
+      alert(`Berhasil menambahkan ${total.toFixed(2)} L ${produk.toUpperCase()} ke jam ${jam}:00`);
     }
   }
 
-  // ===== RESET ALL JAM (hapus semua manual, rata ulang) =====
+  // ===== RESET SEMUA JAM =====
   function resetAllHourly() {
-    // Reset manual flags
-    manualFlag.pertalite.fill(false);
-    manualFlag.pertamax.fill(false);
-    // Set semua nilai ke 0 dulu
     for (let i = 0; i < hourlyDataset.length; i++) {
       hourlyDataset[i].jualPertalite = 0;
       hourlyDataset[i].susutPertalite = 0;
       hourlyDataset[i].jualPertamax = 0;
       hourlyDataset[i].susutPertamax = 0;
     }
-    // Distribusi ulang dari total nozzle & susut
-    distributeToHours();
-    alert('Semua jam direset (manual dibuang) dan didistribusi ulang.');
+    renderSeparateShifts();
   }
 
+  // ===== SAMAKAN TOTAL SHIFT DENGAN NOZZLE (distribusi merata) =====
   function syncShiftToNozzle() {
-    resetAllHourly(); // sama: buang manual, distribusi ulang
+    const totalJualP = parseFloat(document.getElementById('penjualanPertalite').value) || 0;
+    const totalJualM = parseFloat(document.getElementById('penjualanPertamax').value) || 0;
+    const totalSusutP = parseFloat(document.getElementById('hasilPertalite').value) || 0;
+    const totalSusutM = parseFloat(document.getElementById('hasilPertamax').value) || 0;
+    const jamCount = hourlyDataset.length;
+    
+    const rataJualP = totalJualP / jamCount;
+    const rataJualM = totalJualM / jamCount;
+    const rataSusutP = totalSusutP / jamCount;
+    const rataSusutM = totalSusutM / jamCount;
+    
+    for (let i = 0; i < hourlyDataset.length; i++) {
+      hourlyDataset[i].jualPertalite = parseFloat(rataJualP.toFixed(2));
+      hourlyDataset[i].jualPertamax = parseFloat(rataJualM.toFixed(2));
+      hourlyDataset[i].susutPertalite = parseFloat(rataSusutP.toFixed(2));
+      hourlyDataset[i].susutPertamax = parseFloat(rataSusutM.toFixed(2));
+    }
+    renderSeparateShifts();
+    alert("Total shift telah disamakan dengan nozzle & penguapan secara merata.");
   }
 
   // ===== LOCK PRODUK =====
@@ -803,6 +755,7 @@
     else { btn.innerHTML='<i class="fas fa-lock"></i> Kunci Awal'; btn.className='mini-btn btn-lock'; }
   }
 
+  // ===== RESET PRODUK =====
   function resetPertalite() {
     ['awalA1','akhirA1','awalA2','akhirA2','awalC','akhirC','stokAwalPertalite','stokAkhirPertalite'].forEach(id => document.getElementById(id).value='');
     hitungNozzle();
@@ -811,6 +764,8 @@
     ['awalB1','akhirB1','awalB2','akhirB2','awalD','akhirD','stokAwalPertamax','stokAkhirPertamax'].forEach(id => document.getElementById(id).value='');
     hitungNozzle();
   }
+
+  // ===== COPY =====
   function copyPertalite() {
     const txt = `PERTALITE\nA1: ${document.getElementById('jualA1').textContent} L\nA2: ${document.getElementById('jualA2').textContent} L\nC:  ${document.getElementById('jualC').textContent} L\nTotal Terjual: ${document.getElementById('penjualanPertalite').value} L\nPenguapan/Selisih: ${document.getElementById('penguapanValuePertalite').textContent}`;
     navigator.clipboard.writeText(txt); alert('Data Pertalite disalin!');
@@ -833,7 +788,7 @@
   }
 
   document.querySelectorAll('input[type=number]').forEach(inp => inp.addEventListener('input', hitungNozzle));
-  window.onload = () => { populateJamSelect(); hitungNozzle(); };
+  window.onload = () => { populateJamSelect(); hitungNozzle(); renderSeparateShifts(); };
 </script>
 </body>
 </html>
